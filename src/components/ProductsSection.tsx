@@ -2,11 +2,11 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { ShoppingCart, Clock, Eye, ArrowRight } from "lucide-react";
 
-import productShampoo from "@/assets/product-shampoo.jpg";
-import productHairOil from "@/assets/product-hairoil.jpg";
-import productColdSoap from "@/assets/product-coldsoap.jpg";
-import productPourSoap from "@/assets/product-poursoap.jpg";
-import productSerum from "@/assets/product-serum.jpg";
+import productShampoo from "@/assets/product-shampoo.png";
+import productHairOil from "@/assets/product-hairoil.png";
+import productPourSoap from "@/assets/product-poursoap.png";
+import productMeltPourSoap from "@/assets/product-meltpoursoap.png";
+import productSerum from "@/assets/product-serum.png";
 
 interface Product {
   id: number;
@@ -43,21 +43,21 @@ const products: Product[] = [
   },
   {
     id: 3,
-    name: "Cold Process Soap",
-    tagline: "Artisan Ritual",
-    description: "Artisan-crafted with organic butters and essential oils for an indulgent cleansing ritual.",
+    name: "Pour Soap",
+    tagline: "Botanical Art",
+    description: "Elegantly designed botanical soap bars that transform your daily routine into a luxury experience.",
     price: "₹499",
-    image: productColdSoap,
+    image: productPourSoap,
     stock: 15,
     category: "Skincare",
   },
   {
     id: 4,
-    name: "Pour Soap",
-    tagline: "Botanical Art",
-    description: "Elegantly designed botanical soap bars that transform your daily routine into a luxury experience.",
+    name: "Melt Pour Soap",
+    tagline: "Artisan Ritual",
+    description: "Artisan-crafted with organic butters and essential oils for an indulgent cleansing ritual.",
     price: "₹449",
-    image: productPourSoap,
+    image: productMeltPourSoap,
     stock: 20,
     category: "Skincare",
   },
