@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import BottleScene from "./BottleScene";
+
 import heroBg from "@/assets/hero-bg.jpg";
 
 const HeroSection = () => {
@@ -65,7 +65,7 @@ const HeroSection = () => {
       ))}
 
       <motion.div className="container mx-auto px-6 relative z-10" style={{ y: textY }}>
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-screen py-32">
+        <div className="flex items-center justify-center min-h-screen py-32">
           {/* Left - Text */}
           <div className="flex flex-col gap-6">
             <motion.div
@@ -148,16 +148,6 @@ const HeroSection = () => {
             </motion.div>
           </div>
 
-          {/* Right - 3D Bottle */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, delay: 3 }}
-            className="h-[350px] md:h-[500px] lg:h-[600px] relative"
-          >
-            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/5 via-transparent to-forest/10 blur-3xl" />
-            <BottleScene />
-          </motion.div>
         </div>
       </motion.div>
 
