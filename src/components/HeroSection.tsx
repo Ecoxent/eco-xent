@@ -23,10 +23,10 @@ const HeroSection = () => {
         <img
           src={heroProducts}
           alt="Eco-Xent organic products collection"
-          className="w-full h-full object-cover opacity-20 scale-110"
+          className="w-full h-full object-cover opacity-40 scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/60" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-transparent to-background/70" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/30" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/50 via-transparent to-background/50" />
       </motion.div>
       <motion.div
         className="container mx-auto px-6 relative z-10"
