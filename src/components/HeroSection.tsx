@@ -1,7 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import heroProducts from "@/assets/hero-products.jpg";
-import logoImg from "@/assets/ecoxent-logo-new.jpeg";
 
 const HeroSection = () => {
   const sectionRef = useRef(null);
@@ -25,14 +24,14 @@ const HeroSection = () => {
         <motion.img
           src={heroProducts}
           alt="Eco-Xent organic products collection"
-          className="w-full h-full object-cover opacity-40"
+          className="w-full h-full object-cover"
           style={{ scale: bgScale }}
           initial={{ opacity: 0 }}
-          animate={{ opacity: 0.4 }}
+          animate={{ opacity: 0.65 }}
           transition={{ duration: 1.5, ease: "easeOut" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-background/30" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/50 via-transparent to-background/50" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-background/10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/30 via-transparent to-background/30" />
       </motion.div>
 
       <motion.div
@@ -40,21 +39,6 @@ const HeroSection = () => {
         style={{ y: textY, opacity }}
       >
         <div className="flex flex-col items-center text-center gap-8 max-w-2xl mx-auto">
-          {/* Logo with scale + fade reveal */}
-          <motion.div
-            className="overflow-hidden rounded-2xl"
-            initial={{ opacity: 0, scale: 0.8, filter: "blur(10px)" }}
-            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-            transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <motion.img
-              src={logoImg}
-              alt="Eco-Xent Logo"
-              className="h-28 sm:h-36 md:h-44 w-auto object-contain"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.4 }}
-            />
-          </motion.div>
 
           {/* Tagline slide up */}
           <div className="overflow-hidden">
