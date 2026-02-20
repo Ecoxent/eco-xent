@@ -12,6 +12,8 @@ import StatsBar from "@/components/StatsBar";
 import ProductsSection from "@/components/ProductsSection";
 import InteractiveDemo from "@/components/InteractiveDemo";
 import ExperienceSection from "@/components/ExperienceSection";
+import AboutSection from "@/components/AboutSection";
+import FAQSection from "@/components/FAQSection";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import FinalCTA from "@/components/FinalCTA";
 import FooterSection from "@/components/FooterSection";
@@ -47,7 +49,8 @@ const Index = () => {
       <ProductsSection onAddToCart={handleAddToCart} />
       <InteractiveDemo />
       <ExperienceSection />
-      
+      <AboutSection />
+      <FAQSection />
       <FinalCTA />
       <FooterSection />
       <WhatsAppButton />
