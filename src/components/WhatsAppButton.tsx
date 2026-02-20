@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
-const WHATSAPP_NUMBER = "923001234567"; // Eco-Xent ka number yahan dalo
+const WHATSAPP_NUMBER = "923295991062";
 
 const WhatsAppButton = () => {
   const [visible, setVisible] = useState(false);

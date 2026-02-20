@@ -159,7 +159,7 @@ const ProductCard = ({ product, index, onAddToCart }: { product: Product; index:
                     const msg = encodeURIComponent(
                       `السلام علیکم! 🌿\nMujhe *${product.name}* order karna hai.\nPrice: ${product.price}\n\nPlease confirm availability. Shukriya!`
                     );
-                    window.open(`https://wa.me/923001234567?text=${msg}`, "_blank");
+                    window.open(`https://wa.me/923295991062?text=${msg}`, "_blank");
                   }}
                   className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-full font-body font-semibold text-xs tracking-[0.08em] uppercase transition-all duration-300"
                   style={{ background: "linear-gradient(135deg, #25D366, #128C7E)", color: "#fff" }}
