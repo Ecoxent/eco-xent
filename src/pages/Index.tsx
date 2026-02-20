@@ -5,7 +5,7 @@ import AnnouncementBar from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import MarqueeStrip from "@/components/MarqueeStrip";
-import ProblemSection from "@/components/ProblemSection";
+
 import SolutionSection from "@/components/SolutionSection";
 import HorizontalFeatures from "@/components/HorizontalFeatures";
 import StatsBar from "@/components/StatsBar";
@@ -42,7 +42,7 @@ const Index = () => {
       <Navbar cartCount={cartCount} />
       <HeroSection />
       <MarqueeStrip />
-      <ProblemSection />
+      
       <SolutionSection />
       <HorizontalFeatures />
       <StatsBar />
