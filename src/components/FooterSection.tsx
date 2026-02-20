@@ -42,13 +42,15 @@ const FooterSection = () => {
           </p>
           <div className="flex items-center justify-center gap-3">
             {[
-              { icon: Instagram, label: "Instagram" },
-              { icon: Facebook, label: "Facebook" },
-              { icon: Twitter, label: "Twitter" },
-            ].map(({ icon: Icon, label }, i) => (
+              { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/eco_xent?igsh=MTF3Y3R4eGwycmRoeA==" },
+              { icon: Facebook, label: "Facebook", href: "https://www.facebook.com/ecoxent" },
+              { icon: Twitter, label: "Twitter", href: "https://twitter.com/ecoxent" },
+            ].map(({ icon: Icon, label, href }, i) => (
               <motion.a
                 key={label}
-                href="#"
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 20 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ delay: 0.4 + i * 0.08 }}
