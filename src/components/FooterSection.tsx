@@ -102,7 +102,7 @@ const FooterSection = () => {
             <ul className="space-y-3">
               {[
                 { icon: Mail, text: "ecoxent@gmail.com", href: "mailto:ecoxent@gmail.com" },
-                { icon: Phone, text: "+92 300 1234567", href: "tel:+923001234567" },
+                { icon: Phone, text: "+92 329 5991062", href: "tel:+923295991062" },
                 { icon: MapPin, text: "Pakistan", href: "#" },
               ].map(({ icon: Icon, text, href }) => (
                 <li key={text} className="flex items-start gap-2.5 group">
