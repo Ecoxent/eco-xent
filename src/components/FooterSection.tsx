@@ -15,7 +15,7 @@ const FooterSection = () => {
 
   return (
     <footer id="contact" className="relative bg-white overflow-hidden">
-      <div className="w-full h-px" style={{ background: "linear-gradient(90deg, transparent, hsl(40 55% 52% / 0.4), transparent)" }} />
+      <div className="w-full h-px" style={{ background: "linear-gradient(90deg, transparent, hsl(120 35% 28% / 0.4), transparent)" }} />
 
       <div ref={ref} className="container mx-auto px-6 relative z-10">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 py-16 border-b border-border">

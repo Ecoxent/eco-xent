@@ -15,46 +15,46 @@
     --popover: 0 0% 100%;
     --popover-foreground: 150 10% 12%;
 
-    /* Primary — deep forest green */
-    --primary: 150 30% 22%;
+    /* Primary — rich leaf green matching logo */
+    --primary: 120 35% 28%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 45 20% 96%;
-    --secondary-foreground: 150 20% 18%;
+    --secondary: 120 15% 96%;
+    --secondary-foreground: 120 30% 18%;
 
-    --muted: 40 10% 94%;
-    --muted-foreground: 150 8% 45%;
+    --muted: 120 8% 94%;
+    --muted-foreground: 120 8% 45%;
 
-    /* Accent — warm gold */
-    --accent: 40 45% 90%;
-    --accent-foreground: 40 50% 30%;
+    /* Accent — soft green-gold */
+    --accent: 120 20% 92%;
+    --accent-foreground: 120 35% 25%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 40 15% 88%;
-    --input: 40 15% 90%;
-    --ring: 150 30% 22%;
+    --border: 120 10% 88%;
+    --input: 120 10% 90%;
+    --ring: 120 35% 28%;
 
     --radius: 0.5rem;
 
     /* Brand tokens */
-    --gold: 40 55% 52%;
-    --gold-light: 40 50% 65%;
-    --gold-dark: 40 55% 38%;
-    --forest: 150 30% 18%;
-    --forest-deep: 150 35% 12%;
-    --forest-light: 150 15% 92%;
+    --gold: 80 45% 45%;
+    --gold-light: 80 40% 58%;
+    --gold-dark: 80 50% 32%;
+    --forest: 120 35% 22%;
+    --forest-deep: 120 40% 14%;
+    --forest-light: 120 12% 94%;
     --cream: 40 30% 97%;
 
     --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 150 10% 12%;
-    --sidebar-primary: 150 30% 22%;
+    --sidebar-primary: 120 35% 28%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 40 20% 96%;
-    --sidebar-accent-foreground: 150 20% 18%;
-    --sidebar-border: 40 15% 88%;
-    --sidebar-ring: 150 30% 22%;
+    --sidebar-accent: 120 15% 96%;
+    --sidebar-accent-foreground: 120 30% 18%;
+    --sidebar-border: 120 10% 88%;
+    --sidebar-ring: 120 35% 28%;
   }
 }
 
@@ -73,8 +73,8 @@
   }
 
   ::selection {
-    background: hsl(150 30% 22% / 0.15);
-    color: hsl(150 10% 12%);
+    background: hsl(120 35% 28% / 0.15);
+    color: hsl(120 10% 12%);
   }
 }
 
@@ -84,39 +84,39 @@
   }
 
   .glass-gold {
-    background: linear-gradient(135deg, hsl(40 55% 52% / 0.06), hsl(40 20% 96%));
+    background: linear-gradient(135deg, hsl(120 35% 28% / 0.06), hsl(120 15% 96%));
     backdrop-filter: blur(20px);
-    border: 1px solid hsl(40 55% 52% / 0.12);
+    border: 1px solid hsl(120 35% 28% / 0.12);
   }
 
   .glow-gold {
-    box-shadow: 0 0 30px hsl(40 55% 52% / 0.12), 0 0 60px hsl(40 55% 52% / 0.05);
+    box-shadow: 0 0 30px hsl(80 45% 45% / 0.12), 0 0 60px hsl(80 45% 45% / 0.05);
   }
 
   .glow-gold-strong {
-    box-shadow: 0 0 20px hsl(40 55% 52% / 0.3), 0 0 40px hsl(40 55% 52% / 0.12);
+    box-shadow: 0 0 20px hsl(80 45% 45% / 0.3), 0 0 40px hsl(80 45% 45% / 0.12);
   }
 
   .text-gradient-gold {
-    background: linear-gradient(135deg, hsl(40 60% 45%), hsl(40 55% 55%), hsl(40 50% 42%));
+    background: linear-gradient(135deg, hsl(80 50% 38%), hsl(80 45% 48%), hsl(80 50% 35%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .text-gradient-forest {
-    background: linear-gradient(135deg, hsl(150 35% 18%), hsl(150 30% 28%), hsl(150 25% 22%));
+    background: linear-gradient(135deg, hsl(120 40% 18%), hsl(120 35% 28%), hsl(120 30% 22%));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .gradient-forest {
-    background: linear-gradient(180deg, hsl(0 0% 100%), hsl(40 20% 97%), hsl(0 0% 100%));
+    background: linear-gradient(180deg, hsl(0 0% 100%), hsl(120 10% 97%), hsl(0 0% 100%));
   }
 
   .gradient-radial-gold {
-    background: radial-gradient(ellipse at center, hsl(40 55% 52% / 0.06) 0%, transparent 70%);
+    background: radial-gradient(ellipse at center, hsl(120 35% 28% / 0.06) 0%, transparent 70%);
   }
 
   .perspective-1000 {
@@ -141,9 +141,9 @@ section {
   background: hsl(0 0% 97%);
 }
 ::-webkit-scrollbar-thumb {
-  background: hsl(40 55% 52% / 0.3);
+  background: hsl(120 35% 28% / 0.3);
   border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(40 55% 52% / 0.5);
+  background: hsl(120 35% 28% / 0.5);
 }

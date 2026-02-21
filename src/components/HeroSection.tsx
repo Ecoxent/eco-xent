@@ -11,7 +11,7 @@ const FloatingParticle = ({ delay, x, y, size }: { delay: number; x: string; y: 
       top: y,
       width: size,
       height: size,
-      background: "radial-gradient(circle, hsl(40 55% 52% / 0.6) 0%, transparent 70%)",
+      background: "radial-gradient(circle, hsl(80 45% 45% / 0.6) 0%, transparent 70%)",
     }}
     animate={{
       y: [0, -30, -15, -35, 0],
@@ -62,14 +62,14 @@ const HeroSection = () => {
           <div
             className="absolute inset-0"
             style={{
-              background: "radial-gradient(ellipse 70% 50% at 30% 45%, hsl(40 55% 52% / 0.15) 0%, transparent 70%)",
+              background: "radial-gradient(ellipse 70% 50% at 30% 45%, hsl(120 35% 28% / 0.15) 0%, transparent 70%)",
             }}
           />
           {/* Dark vignette */}
           <div
             className="absolute inset-0"
             style={{
-              background: "radial-gradient(ellipse 80% 80% at 50% 50%, transparent 30%, hsl(150 30% 8% / 0.6) 100%)",
+              background: "radial-gradient(ellipse 80% 80% at 50% 50%, transparent 30%, hsl(120 35% 8% / 0.6) 100%)",
             }}
           />
         </motion.div>
@@ -120,7 +120,7 @@ const HeroSection = () => {
             <div className="overflow-hidden mb-8">
               <motion.h1
                 className="text-[clamp(3rem,8vw,6.5rem)] font-heading font-light leading-[0.92] tracking-tight"
-                style={{ color: "hsl(40 55% 60%)" }}
+                style={{ color: "hsl(80 45% 55%)" }}
                 initial={{ y: "110%" }}
                 animate={{ y: "0%" }}
                 transition={{ duration: 1, delay: 0.65, ease: [0.22, 1, 0.36, 1] }}
@@ -150,13 +150,13 @@ const HeroSection = () => {
                 href="#products"
                 className="group inline-flex items-center gap-3 px-10 py-4 rounded-full font-body font-medium text-sm tracking-widest uppercase transition-all duration-500"
                 style={{
-                  background: "linear-gradient(135deg, hsl(40 55% 48%), hsl(40 50% 42%))",
+                  background: "linear-gradient(135deg, hsl(120 35% 28%), hsl(120 40% 22%))",
                   color: "hsl(0 0% 100%)",
-                  boxShadow: "0 4px 24px hsl(40 55% 52% / 0.3)",
+                  boxShadow: "0 4px 24px hsl(120 35% 28% / 0.3)",
                 }}
                 whileHover={{
                   scale: 1.03,
-                  boxShadow: "0 8px 40px hsl(40 55% 52% / 0.5)",
+                  boxShadow: "0 8px 40px hsl(120 35% 28% / 0.5)",
                 }}
                 whileTap={{ scale: 0.97 }}
               >

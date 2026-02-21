@@ -66,7 +66,7 @@ const Navbar = ({ cartCount }: { cartCount: number }) => {
               target="_blank"
               rel="noopener noreferrer"
               className="hidden md:flex items-center gap-2 px-5 py-2 rounded-full text-[11px] font-body font-medium tracking-widest uppercase text-white transition-all duration-300 hover:shadow-lg"
-              style={{ background: "hsl(150 30% 22%)" }}
+              style={{ background: "hsl(120 35% 28%)" }}
             >
               <Phone className="w-3 h-3" />
               Order Now
@@ -143,7 +143,7 @@ const Navbar = ({ cartCount }: { cartCount: number }) => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-2 flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-sm font-body font-medium text-white"
-                style={{ background: "hsl(150 30% 22%)" }}
+                style={{ background: "hsl(120 35% 28%)" }}
               >
                 <Phone className="w-4 h-4" />
                 WhatsApp Order
