@@ -58,10 +58,10 @@ const products: Product[] = [
     image: productConditioner, discount: 23, badge: "New", category: "Haircare",
   },
   {
-    id: 6, name: "Botanical Face Wash", tagline: "Deep Purify",
-    description: "Gentle botanical face wash that removes impurities while nourishing skin with natural plant extracts.",
-    price: 550, originalPrice: 750, priceDisplay: "Rs.550", originalPriceDisplay: "Rs.750",
-    image: productNew1, discount: 27, badge: "New", category: "Skincare",
+    id: 6, name: "All-in-One Serum", tagline: "Complete Skin Transformation",
+    description: "Advanced serum with Niacinamide, Vitamin C, Kojic Acid & Alpha Arbutin. Reduces melasma, fades dark spots & minimizes wrinkles.",
+    price: 1500, originalPrice: 2000, priceDisplay: "Rs.1,500", originalPriceDisplay: "Rs.2,000",
+    image: productNew1, discount: 25, badge: "Best Seller", category: "Skincare",
   },
   {
     id: 7, name: "Herbal Body Lotion", tagline: "Silk Hydration",
