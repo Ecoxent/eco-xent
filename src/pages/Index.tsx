@@ -18,6 +18,7 @@ import FinalCTA from "@/components/FinalCTA";
 import FooterSection from "@/components/FooterSection";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import MobileStickyBar from "@/components/MobileStickyBar";
+import AIChatbot from "@/components/AIChatbot";
 import { toast } from "sonner";
 
 const Index = () => {
@@ -55,6 +56,7 @@ const Index = () => {
       <FinalCTA />
       <FooterSection />
       <WhatsAppButton />
+      <AIChatbot />
       <MobileStickyBar />
     </div>
   );
