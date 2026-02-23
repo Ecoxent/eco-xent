@@ -6,6 +6,7 @@ import HeroSection from "@/components/HeroSection";
 import TrustSection from "@/components/TrustSection";
 import MarqueeStrip from "@/components/MarqueeStrip";
 import SolutionSection from "@/components/SolutionSection";
+import RamzanBanner from "@/components/RamzanBanner";
 import ProductShowcase from "@/components/ProductShowcase";
 import StatsBar from "@/components/StatsBar";
 import ProductsSection from "@/components/ProductsSection";
@@ -44,6 +45,7 @@ const Index = () => {
       <HeroSection />
       <TrustSection />
       <MarqueeStrip />
+      <RamzanBanner />
       <ProductsSection onAddToCart={handleAddToCart} />
       <BestSellerSection />
       <ReviewsSection />
