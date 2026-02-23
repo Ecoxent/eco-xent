@@ -97,9 +97,9 @@ const HeroSection = () => {
               src={slide.image}
               alt={slide.overline}
               className="w-full h-full object-cover"
-              loading="eager"
+              loading={current === 0 ? "eager" : "lazy"}
               decoding="async"
-              fetchPriority={current === 0 ? "high" : "low"}
+              fetchPriority={current === 0 ? "high" : "auto"}
               style={{ filter: "brightness(0.35)" }}
             />
             {/* Overlays */}
