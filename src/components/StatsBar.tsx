@@ -33,7 +33,7 @@ const StatsBar = () => {
       ref={ref}
       className="relative py-16 overflow-hidden"
       style={{
-        background: "linear-gradient(135deg, hsl(150 30% 15%) 0%, hsl(150 25% 22%) 50%, hsl(150 30% 15%) 100%)",
+        background: "linear-gradient(135deg, hsl(90 30% 14%) 0%, hsl(90 28% 22%) 50%, hsl(90 30% 14%) 100%)",
       }}
     >
       <div className="container mx-auto px-6 relative z-10">

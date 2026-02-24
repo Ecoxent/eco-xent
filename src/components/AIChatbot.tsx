@@ -167,7 +167,7 @@ const AIChatbot = () => {
             animate={{ scale: 1 }}
             exit={{ scale: 0 }}
             onClick={() => setIsOpen(true)}
-            className="fixed bottom-24 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-xl transition-all duration-300 overflow-hidden border-2 border-gold/30"
+            className="fixed bottom-24 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-xl transition-all duration-300 overflow-hidden border-2 border-gold/30 ring-2 ring-gold/10 ring-offset-2"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
           >

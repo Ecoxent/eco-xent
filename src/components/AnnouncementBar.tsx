@@ -16,7 +16,7 @@ const AnnouncementBar = () => {
   if (!visible) return null;
 
   return (
-    <div className="relative overflow-hidden z-50 select-none" style={{ minHeight: "38px", background: "hsl(120 35% 22%)" }}>
+    <div className="relative overflow-hidden z-50 select-none" style={{ minHeight: "38px", background: "hsl(var(--forest))" }}>
       <div className="relative flex items-center h-full" style={{ minHeight: "38px" }}>
         <div className="overflow-hidden flex-1 relative">
           <motion.div

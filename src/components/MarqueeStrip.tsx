@@ -11,14 +11,18 @@ const MarqueeStrip = () => {
   const words2 = "ECO-XENT  ·  SERUM  ·  HAIR OIL  ·  SHAMPOO  ·  SOAP  ·  PREMIUM  ·  ";
 
   return (
-    <div ref={ref} className="relative py-8 overflow-hidden select-none border-y border-border/50 bg-white">
-      <motion.div className="flex whitespace-nowrap mb-2" style={{ x: x1 }}>
+    <div
+      ref={ref}
+      className="relative py-6 overflow-hidden select-none"
+      style={{ background: "hsl(var(--forest))" }}
+    >
+      <motion.div className="flex whitespace-nowrap mb-1.5" style={{ x: x1 }}>
         {[0, 1, 2].map((i) => (
           <span
             key={i}
-            className="text-[clamp(2rem,5vw,4rem)] font-heading font-light tracking-tight mx-2"
+            className="text-[clamp(1.8rem,4vw,3.5rem)] font-heading font-light tracking-tight mx-2"
             style={{
-              WebkitTextStroke: "1px hsl(40 55% 52% / 0.2)",
+              WebkitTextStroke: "1px hsl(0 0% 100% / 0.15)",
               WebkitTextFillColor: "transparent",
             }}
           >
@@ -28,7 +32,7 @@ const MarqueeStrip = () => {
       </motion.div>
       <motion.div className="flex whitespace-nowrap" style={{ x: x2 }}>
         {[0, 1, 2].map((i) => (
-          <span key={i} className="text-xs font-body font-light tracking-[0.4em] uppercase text-muted-foreground/30 mx-4">
+          <span key={i} className="text-[10px] font-body font-light tracking-[0.4em] uppercase mx-4" style={{ color: "hsl(0 0% 100% / 0.35)" }}>
             {words2}
           </span>
         ))}
