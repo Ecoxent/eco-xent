@@ -95,7 +95,7 @@ const HeroSection = () => {
             className="absolute inset-0 transition-opacity duration-500 ease-in-out"
             style={{ opacity: i === current ? 1 : 0, zIndex: i === current ? 1 : 0 }}
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-forest-dark via-forest to-forest-dark" />
+            <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, hsl(90 35% 12%), hsl(90 30% 18%), hsl(90 35% 12%))" }} />
             <img
               src={s.image}
               alt={s.overline}
@@ -105,8 +105,8 @@ const HeroSection = () => {
               decoding="async"
               fetchPriority={i === 0 ? "high" : "auto"}
             />
-            <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 70% 50% at 30% 45%, hsl(120 35% 28% / 0.15) 0%, transparent 70%)" }} />
-            <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 80% 80% at 50% 50%, transparent 30%, hsl(120 35% 8% / 0.6) 100%)" }} />
+            <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 70% 50% at 30% 45%, hsl(90 30% 28% / 0.15) 0%, transparent 70%)" }} />
+            <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse 80% 80% at 50% 50%, transparent 30%, hsl(90 30% 8% / 0.6) 100%)" }} />
           </div>
         ))}
 
@@ -128,7 +128,7 @@ const HeroSection = () => {
                     className={`text-[clamp(3rem,8vw,6.5rem)] font-heading font-light leading-[0.92] tracking-tight ${
                       i === 1 ? "" : "text-white"
                     }`}
-                    style={i === 1 ? { color: "hsl(80 45% 55%)" } : undefined}
+                    style={i === 1 ? { color: "hsl(45 55% 58%)" } : undefined}
                   >
                     {line}
                   </h1>
@@ -146,9 +146,9 @@ const HeroSection = () => {
                   href="#products"
                   className="group inline-flex items-center gap-3 px-10 py-4 rounded-full font-body font-medium text-sm tracking-widest uppercase transition-all duration-300 hover:scale-[1.03]"
                   style={{
-                    background: "linear-gradient(135deg, hsl(120 35% 28%), hsl(120 40% 22%))",
+                    background: "linear-gradient(135deg, hsl(90 30% 30%), hsl(90 35% 22%))",
                     color: "hsl(0 0% 100%)",
-                    boxShadow: "0 4px 24px hsl(120 35% 28% / 0.3)",
+                    boxShadow: "0 4px 24px hsl(90 30% 30% / 0.3)",
                   }}
                 >
                   Shop Collection

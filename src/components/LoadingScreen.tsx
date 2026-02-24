@@ -36,7 +36,7 @@ const LoadingScreen = () => {
             </div>
 
             <motion.p
-              className="text-gold/50 text-[10px] tracking-[0.5em] uppercase font-body mb-6"
+              className="text-gold/60 text-[10px] tracking-[0.5em] uppercase font-body mb-6 font-medium"
               initial={{ opacity: 0 }}
               animate={phase >= 2 ? { opacity: 1 } : {}}
               transition={{ duration: 0.4 }}
