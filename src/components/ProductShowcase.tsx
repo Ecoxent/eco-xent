@@ -44,35 +44,31 @@ const ProductShowcase = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const [activeIndex, setActiveIndex] = useState(0);
-  const [imageLoaded, setImageLoaded] = useState(false);
   const [initialLoad, setInitialLoad] = useState(true);
 
-  // Preload first image on mount
+  // Preload first image then start
   useEffect(() => {
     const img = new Image();
     img.src = showcaseProducts[0].image;
-    img.onload = () => {
-      setImageLoaded(true);
-      setInitialLoad(false);
-    };
+    img.onload = () => setInitialLoad(false);
   }, []);
 
-  // Auto-scroll — wait for image to fully load before moving
+  // Auto-scroll
   useEffect(() => {
-    if (!imageLoaded || initialLoad) return;
+    if (initialLoad) return;
     const timer = setTimeout(() => {
-      setImageLoaded(false);
       setActiveIndex((prev) => (prev + 1) % showcaseProducts.length);
-    }, 6000);
+    }, 5000);
     return () => clearTimeout(timer);
-  }, [imageLoaded, initialLoad]);
+  }, [activeIndex, initialLoad]);
 
-  // Preload next image when current one is shown
+  // Preload all images on mount
   useEffect(() => {
-    const nextIndex = (activeIndex + 1) % showcaseProducts.length;
-    const img = new Image();
-    img.src = showcaseProducts[nextIndex].image;
-  }, [activeIndex]);
+    showcaseProducts.forEach((p) => {
+      const img = new Image();
+      img.src = p.image;
+    });
+  }, []);
 
   const activeProduct = showcaseProducts[activeIndex];
 
@@ -125,20 +121,13 @@ const ProductShowcase = () => {
                 background: "linear-gradient(160deg, hsl(var(--cream)), hsl(var(--secondary)), hsl(var(--cream)))",
               }}
             >
-              {/* Shimmer loading placeholder */}
-              {!imageLoaded && (
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-16 h-16 rounded-full border-2 border-gold/30 border-t-gold animate-spin" />
-                </div>
-              )}
               <motion.img
                 key={activeIndex}
                 src={activeProduct.image}
                 alt={activeProduct.name}
-                initial={{ opacity: 0, scale: 0.92, y: 15 }}
-                animate={imageLoaded ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.92, y: 15 }}
-                transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
-                onLoad={() => setImageLoaded(true)}
+                initial={{ opacity: 0, scale: 0.96 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.45, ease: "easeOut" }}
                 className="w-[82%] h-[82%] object-contain drop-shadow-xl relative z-10"
               />
               {/* Subtle inner glow */}
@@ -195,7 +184,6 @@ const ProductShowcase = () => {
               key={product.name}
               onClick={() => {
                 if (i !== activeIndex) {
-                  setImageLoaded(false);
                   setActiveIndex(i);
                 }
               }}
