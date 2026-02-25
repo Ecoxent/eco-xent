@@ -49,14 +49,19 @@ const ProductShowcase = () => {
   // Preload all images on mount
   useEffect(() => {
     let loaded = 0;
+    const onDone = () => {
+      loaded++;
+      if (loaded === showcaseProducts.length) setInitialLoad(false);
+    };
     showcaseProducts.forEach((p) => {
       const img = new Image();
       img.src = p.image;
-      img.onload = () => {
-        loaded++;
-        if (loaded === showcaseProducts.length) setInitialLoad(false);
-      };
+      img.onload = onDone;
+      img.onerror = onDone; // don't block loop if image fails
     });
+    // Fallback: start loop after 2s regardless
+    const fallback = setTimeout(() => setInitialLoad(false), 2000);
+    return () => clearTimeout(fallback);
   }, []);
 
   // Auto-scroll
