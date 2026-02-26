@@ -106,6 +106,11 @@ const FooterSection = () => {
 
         <div className="py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-muted-foreground/60 font-body font-light">© 2026 Eco-Xent. All rights reserved.</p>
+          <p className="text-xs text-muted-foreground/60 font-body font-light">
+            Website by{" "}
+            <a href="mailto:neonesttechnologies@gmail.com" className="hover:text-gold transition-colors underline">Neo Nest Technologies</a>
+            {" "}— <a href="mailto:neonesttechnologies@gmail.com" className="hover:text-gold transition-colors">neonesttechnologies@gmail.com</a>
+          </p>
           <div className="flex gap-5">
             {["Privacy Policy", "Terms of Service", "Refund Policy"].map((item) => (
               <a key={item} href="#" className="text-xs text-muted-foreground/60 hover:text-gold transition-colors font-body font-light">{item}</a>
