@@ -1,4 +1,5 @@
 import { useState } from "react";
+import CheckoutModal from "@/components/CheckoutModal";
 import LoadingScreen from "@/components/LoadingScreen";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
@@ -45,6 +46,7 @@ const productMap: Record<number, { name: string; price: number; priceDisplay: st
 const Index = () => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [cartOpen, setCartOpen] = useState(false);
+  const [cartCheckoutOpen, setCartCheckoutOpen] = useState(false);
 
   const cartCount = cartItems.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -87,6 +89,62 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      {/* Skip to content — accessibility */}
+      <a
+        href="#products"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:px-4 focus:py-2 focus:rounded-lg focus:bg-primary focus:text-primary-foreground focus:text-sm focus:font-body focus:font-semibold"
+      >
+        Skip to Products
+      </a>
+
+      {/* JSON-LD Structured Data */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "Eco-Xent",
+            url: "https://eco-xent.lovable.app",
+            logo: "https://eco-xent.lovable.app/favicon.ico",
+            contactPoint: {
+              "@type": "ContactPoint",
+              telephone: "+92-329-5991062",
+              contactType: "customer service",
+              availableLanguage: ["English", "Urdu"],
+            },
+            sameAs: [
+              "https://www.facebook.com/share/1Bx4wMoGHi/",
+              "https://www.instagram.com/eco_xent",
+              "https://www.tiktok.com/@eco_xent",
+            ],
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            name: "Eco-Xent Products",
+            itemListElement: Object.values(productMap).map((p, i) => ({
+              "@type": "ListItem",
+              position: i + 1,
+              item: {
+                "@type": "Product",
+                name: p.name,
+                offers: {
+                  "@type": "Offer",
+                  priceCurrency: "PKR",
+                  price: p.price,
+                  availability: "https://schema.org/InStock",
+                },
+              },
+            })),
+          }),
+        }}
+      />
       <LoadingScreen />
       <AnnouncementBar />
       <Navbar cartCount={cartCount} onCartClick={() => setCartOpen(true)} />
@@ -114,6 +172,21 @@ const Index = () => {
         items={cartItems}
         onUpdateQuantity={handleUpdateQuantity}
         onRemove={handleRemove}
+        onCheckout={() => {
+          setCartOpen(false);
+          setCartCheckoutOpen(true);
+        }}
+      />
+      <CheckoutModal
+        product={null}
+        cartProducts={cartItems.map((item) => ({
+          name: item.name,
+          price: item.price,
+          priceDisplay: item.priceDisplay,
+          quantity: item.quantity,
+        }))}
+        isOpen={cartCheckoutOpen}
+        onClose={() => setCartCheckoutOpen(false)}
       />
     </div>
   );

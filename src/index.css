@@ -79,6 +79,11 @@
     background: hsl(90 30% 30% / 0.15);
     color: hsl(90 8% 12%);
   }
+
+  /* Focus-visible for keyboard accessibility */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary;
+  }
 }
 
 @layer utilities {
