@@ -10,8 +10,16 @@ interface Product {
   price: string;
 }
 
+interface CartProduct {
+  name: string;
+  price: number;
+  priceDisplay: string;
+  quantity: number;
+}
+
 interface CheckoutModalProps {
   product: Product | null;
+  cartProducts?: CartProduct[];
   isOpen: boolean;
   onClose: () => void;
 }
@@ -22,7 +30,7 @@ const paymentMethods = [
   { value: "Bank Transfer", label: "Bank Transfer", icon: "🏦", desc: "Bank account mein paise bhejein" },
 ];
 
-const CheckoutModal = ({ product, isOpen, onClose }: CheckoutModalProps) => {
+const CheckoutModal = ({ product, cartProducts, isOpen, onClose }: CheckoutModalProps) => {
   const [step, setStep] = useState<"form" | "success">("form");
   const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
@@ -40,7 +48,8 @@ const CheckoutModal = ({ product, isOpen, onClose }: CheckoutModalProps) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!product) return;
+    const isCart = cartProducts && cartProducts.length > 0;
+    if (!product && !isCart) return;
 
     if (!form.customer_name.trim() || !form.customer_phone.trim() || !form.customer_address.trim()) {
       toast.error("Sab fields bhar dein");
@@ -49,25 +58,47 @@ const CheckoutModal = ({ product, isOpen, onClose }: CheckoutModalProps) => {
 
     setLoading(true);
     try {
-      const { error } = await supabase.from("orders").insert({
-        customer_name: form.customer_name.trim(),
-        customer_phone: form.customer_phone.trim(),
-        customer_address: form.customer_address.trim(),
-        product_name: product.name,
-        product_price: product.price,
-        payment_method: form.payment_method,
-        quantity: form.quantity,
-        notes: form.notes.trim() || null,
-        status: "pending",
-      });
+      if (isCart) {
+        // Insert one order per cart item
+        const orders = cartProducts.map((cp) => ({
+          customer_name: form.customer_name.trim(),
+          customer_phone: form.customer_phone.trim(),
+          customer_address: form.customer_address.trim(),
+          product_name: cp.name,
+          product_price: cp.priceDisplay,
+          payment_method: form.payment_method,
+          quantity: cp.quantity,
+          notes: form.notes.trim() || null,
+          status: "pending",
+        }));
+        const { error } = await supabase.from("orders").insert(orders);
+        if (error) throw error;
 
-      if (error) throw error;
+        const totalPrice = cartProducts.reduce((s, cp) => s + cp.price * cp.quantity, 0);
+        const itemsList = cartProducts.map((cp) => `• ${cp.name} x${cp.quantity} (${cp.priceDisplay})`).join("\n");
+        const msg = encodeURIComponent(
+          `السلام علیکم! 🌿\n*نیا آرڈر آیا ہے!*\n\n👤 نام: ${form.customer_name}\n📞 نمبر: ${form.customer_phone}\n📍 پتہ: ${form.customer_address}\n\n📦 پروڈکٹس:\n${itemsList}\n\n💰 Total: Rs.${totalPrice.toLocaleString()}\n💳 ادائیگی: ${form.payment_method}\n${form.notes ? `📝 نوٹ: ${form.notes}` : ""}\n\nشکریہ!`
+        );
+        window.open(`https://wa.me/923295991062?text=${msg}`, "_blank");
+      } else if (product) {
+        const { error } = await supabase.from("orders").insert({
+          customer_name: form.customer_name.trim(),
+          customer_phone: form.customer_phone.trim(),
+          customer_address: form.customer_address.trim(),
+          product_name: product.name,
+          product_price: product.price,
+          payment_method: form.payment_method,
+          quantity: form.quantity,
+          notes: form.notes.trim() || null,
+          status: "pending",
+        });
+        if (error) throw error;
 
-      // Also send WhatsApp message
-      const msg = encodeURIComponent(
-        `السلام علیکم! 🌿\n*نیا آرڈر آیا ہے!*\n\n👤 نام: ${form.customer_name}\n📞 نمبر: ${form.customer_phone}\n📍 پتہ: ${form.customer_address}\n\n📦 پروڈکٹ: ${product.name}\n💰 قیمت: ${product.price}\n🔢 مقدار: ${form.quantity}\n💳 ادائیگی: ${form.payment_method}\n${form.notes ? `📝 نوٹ: ${form.notes}` : ""}\n\nشکریہ!`
-      );
-      window.open(`https://wa.me/923295991062?text=${msg}`, "_blank");
+        const msg = encodeURIComponent(
+          `السلام علیکم! 🌿\n*نیا آرڈر آیا ہے!*\n\n👤 نام: ${form.customer_name}\n📞 نمبر: ${form.customer_phone}\n📍 پتہ: ${form.customer_address}\n\n📦 پروڈکٹ: ${product.name}\n💰 قیمت: ${product.price}\n🔢 مقدار: ${form.quantity}\n💳 ادائیگی: ${form.payment_method}\n${form.notes ? `📝 نوٹ: ${form.notes}` : ""}\n\nشکریہ!`
+        );
+        window.open(`https://wa.me/923295991062?text=${msg}`, "_blank");
+      }
 
       setStep("success");
     } catch (err) {
@@ -137,7 +168,32 @@ const CheckoutModal = ({ product, isOpen, onClose }: CheckoutModalProps) => {
                   className="p-6 flex flex-col gap-5"
                 >
                   {/* Product summary */}
-                  {product && (
+                  {cartProducts && cartProducts.length > 0 ? (
+                    <div className="flex flex-col gap-2">
+                      {cartProducts.map((cp, i) => (
+                        <div
+                          key={i}
+                          className="flex items-center gap-3 p-3 rounded-xl border border-primary/15"
+                          style={{ background: "hsl(43 50% 55% / 0.05)" }}
+                        >
+                          <Package className="w-4 h-4 text-primary shrink-0" />
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-heading font-semibold text-foreground truncate">{cp.name}</p>
+                            <p className="text-xs text-primary font-body">{cp.priceDisplay} × {cp.quantity}</p>
+                          </div>
+                          <span className="text-sm font-heading font-bold text-foreground">
+                            Rs.{(cp.price * cp.quantity).toLocaleString()}
+                          </span>
+                        </div>
+                      ))}
+                      <div className="flex items-center justify-between px-3 pt-2">
+                        <span className="text-xs font-body text-muted-foreground">Total</span>
+                        <span className="text-base font-heading font-bold text-foreground">
+                          Rs.{cartProducts.reduce((s, cp) => s + cp.price * cp.quantity, 0).toLocaleString()}
+                        </span>
+                      </div>
+                    </div>
+                  ) : product ? (
                     <div
                       className="flex items-center gap-3 p-3 rounded-xl border border-primary/15"
                       style={{ background: "hsl(43 50% 55% / 0.05)" }}
@@ -162,7 +218,7 @@ const CheckoutModal = ({ product, isOpen, onClose }: CheckoutModalProps) => {
                         >+</button>
                       </div>
                     </div>
-                  )}
+                  ) : null}
 
                   {/* Name */}
                   <div className="flex flex-col gap-1.5">

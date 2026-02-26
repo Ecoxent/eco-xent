@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Minus, Plus, ShoppingBag, Trash2 } from "lucide-react";
+import { X, Minus, Plus, ShoppingBag, Trash2, MessageCircle } from "lucide-react";
 
 export interface CartItem {
   id: number;
@@ -16,9 +16,10 @@ interface CartDrawerProps {
   items: CartItem[];
   onUpdateQuantity: (id: number, delta: number) => void;
   onRemove: (id: number) => void;
+  onCheckout?: () => void;
 }
 
-const CartDrawer = ({ isOpen, onClose, items, onUpdateQuantity, onRemove }: CartDrawerProps) => {
+const CartDrawer = ({ isOpen, onClose, items, onUpdateQuantity, onRemove, onCheckout }: CartDrawerProps) => {
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
   const totalPrice = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
@@ -139,13 +140,24 @@ const CartDrawer = ({ isOpen, onClose, items, onUpdateQuantity, onRemove }: Cart
 
             {/* Footer */}
             {items.length > 0 && (
-              <div className="border-t border-border px-6 py-5 space-y-4">
+              <div className="border-t border-border px-6 py-5 space-y-3">
                 <div className="flex items-center justify-between">
                   <span className="text-sm font-body text-muted-foreground">Total</span>
                   <span className="text-xl font-heading font-bold text-foreground">
                     Rs.{totalPrice.toLocaleString()}
                   </span>
                 </div>
+                {/* Proceed to Checkout */}
+                <motion.button
+                  onClick={onCheckout}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.97 }}
+                  className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl font-body font-semibold text-sm tracking-wider uppercase text-primary-foreground bg-primary hover:bg-primary/90 transition-colors"
+                >
+                  <ShoppingBag className="w-4 h-4" />
+                  Proceed to Checkout
+                </motion.button>
+                {/* WhatsApp option */}
                 <motion.a
                   href={`https://wa.me/923295991062?text=${encodeURIComponent(
                     `Hi! I'd like to order:\n${items.map(i => `• ${i.name} x${i.quantity} (${i.priceDisplay})`).join('\n')}\n\nTotal: Rs.${totalPrice.toLocaleString()}`
@@ -154,9 +166,10 @@ const CartDrawer = ({ isOpen, onClose, items, onUpdateQuantity, onRemove }: Cart
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.97 }}
-                  className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl font-body font-semibold text-sm tracking-wider uppercase text-primary-foreground bg-primary hover:bg-primary/90 transition-colors"
+                  className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-body font-medium text-sm tracking-wider border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 transition-colors"
                 >
-                  Checkout via WhatsApp
+                  <MessageCircle className="w-4 h-4" />
+                  Or Order via WhatsApp
                 </motion.a>
               </div>
             )}
