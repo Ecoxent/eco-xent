@@ -1,27 +1,29 @@
-import { useState } from "react";
-import CheckoutModal from "@/components/CheckoutModal";
+import { useState, lazy, Suspense } from "react";
 import LoadingScreen from "@/components/LoadingScreen";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import TrustSection from "@/components/TrustSection";
-import MarqueeStrip from "@/components/MarqueeStrip";
-import SolutionSection from "@/components/SolutionSection";
-import RamzanBanner from "@/components/RamzanBanner";
-import ProductShowcase from "@/components/ProductShowcase";
-import StatsBar from "@/components/StatsBar";
-import ProductsSection from "@/components/ProductsSection";
-import BestSellerSection from "@/components/BestSellerSection";
-import ReviewsSection from "@/components/ReviewsSection";
-import ExperienceSection from "@/components/ExperienceSection";
-import AboutSection from "@/components/AboutSection";
-import FAQSection from "@/components/FAQSection";
-import FinalCTA from "@/components/FinalCTA";
-import FooterSection from "@/components/FooterSection";
-import WhatsAppButton from "@/components/WhatsAppButton";
-import MobileStickyBar from "@/components/MobileStickyBar";
-import AIChatbot from "@/components/AIChatbot";
 import CartDrawer, { CartItem } from "@/components/CartDrawer";
+
+// Lazy load below-the-fold sections for faster initial load
+const TrustSection = lazy(() => import("@/components/TrustSection"));
+const MarqueeStrip = lazy(() => import("@/components/MarqueeStrip"));
+const SolutionSection = lazy(() => import("@/components/SolutionSection"));
+const RamzanBanner = lazy(() => import("@/components/RamzanBanner"));
+const ProductShowcase = lazy(() => import("@/components/ProductShowcase"));
+const StatsBar = lazy(() => import("@/components/StatsBar"));
+const ProductsSection = lazy(() => import("@/components/ProductsSection"));
+const BestSellerSection = lazy(() => import("@/components/BestSellerSection"));
+const ReviewsSection = lazy(() => import("@/components/ReviewsSection"));
+const ExperienceSection = lazy(() => import("@/components/ExperienceSection"));
+const AboutSection = lazy(() => import("@/components/AboutSection"));
+const FAQSection = lazy(() => import("@/components/FAQSection"));
+const FinalCTA = lazy(() => import("@/components/FinalCTA"));
+const FooterSection = lazy(() => import("@/components/FooterSection"));
+const WhatsAppButton = lazy(() => import("@/components/WhatsAppButton"));
+const MobileStickyBar = lazy(() => import("@/components/MobileStickyBar"));
+const AIChatbot = lazy(() => import("@/components/AIChatbot"));
+const CheckoutModal = lazy(() => import("@/components/CheckoutModal"));
 import { toast } from "sonner";
 
 // Product info for cart (matches ProductsSection data)
@@ -149,23 +151,25 @@ const Index = () => {
       <AnnouncementBar />
       <Navbar cartCount={cartCount} onCartClick={() => setCartOpen(true)} />
       <HeroSection />
-      <TrustSection />
-      <MarqueeStrip />
-      <RamzanBanner />
-      <ProductsSection onAddToCart={handleAddToCart} />
-      <BestSellerSection />
-      <ReviewsSection />
-      <StatsBar />
-      <SolutionSection />
-      <ProductShowcase />
-      <ExperienceSection />
-      <AboutSection />
-      <FAQSection />
-      <FinalCTA />
-      <FooterSection />
-      <WhatsAppButton />
-      <AIChatbot />
-      <MobileStickyBar />
+      <Suspense fallback={<div className="h-20" />}>
+        <TrustSection />
+        <MarqueeStrip />
+        <RamzanBanner />
+        <ProductsSection onAddToCart={handleAddToCart} />
+        <BestSellerSection />
+        <ReviewsSection />
+        <StatsBar />
+        <SolutionSection />
+        <ProductShowcase />
+        <ExperienceSection />
+        <AboutSection />
+        <FAQSection />
+        <FinalCTA />
+        <FooterSection />
+        <WhatsAppButton />
+        <AIChatbot />
+        <MobileStickyBar />
+      </Suspense>
       <CartDrawer
         isOpen={cartOpen}
         onClose={() => setCartOpen(false)}
@@ -177,17 +181,19 @@ const Index = () => {
           setCartCheckoutOpen(true);
         }}
       />
-      <CheckoutModal
-        product={null}
-        cartProducts={cartItems.map((item) => ({
-          name: item.name,
-          price: item.price,
-          priceDisplay: item.priceDisplay,
-          quantity: item.quantity,
-        }))}
-        isOpen={cartCheckoutOpen}
-        onClose={() => setCartCheckoutOpen(false)}
-      />
+      <Suspense fallback={null}>
+        <CheckoutModal
+          product={null}
+          cartProducts={cartItems.map((item) => ({
+            name: item.name,
+            price: item.price,
+            priceDisplay: item.priceDisplay,
+            quantity: item.quantity,
+          }))}
+          isOpen={cartCheckoutOpen}
+          onClose={() => setCartCheckoutOpen(false)}
+        />
+      </Suspense>
     </div>
   );
 };
