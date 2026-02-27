@@ -1,5 +1,6 @@
 import { motion, useInView, AnimatePresence } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, useCallback } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import showcaseSerum from "@/assets/showcase-serum.png";
 import showcaseHairOil from "@/assets/showcase-hairoil.png";
@@ -11,32 +12,37 @@ const showcaseProducts = [
   {
     name: "All-in-One Serum",
     tagline: "Complete Skin Transformation",
-    highlights: ["Reduces Melasma", "Minimizes Fine Lines & Wrinkles", "Lightens Dark Circles & Puffiness", "Fades Dark Spots & Heals Dry Patches"],
+    highlights: ["Reduces Melasma", "Minimizes Fine Lines & Wrinkles", "Lightens Dark Circles", "Fades Dark Spots"],
     image: showcaseSerum,
+    accent: "hsl(var(--gold))",
   },
   {
     name: "Hair Healer Oil",
     tagline: "Nourishing Hair Fall Solution",
     highlights: ["13+ Botanical Oils", "Strengthens Follicles", "Promotes Growth"],
     image: showcaseHairOil,
+    accent: "hsl(var(--gold))",
   },
   {
     name: "Herbal Shampoo",
     tagline: "Gentle Herbal Cleanse",
     highlights: ["Sulfate-Free Formula", "Neem & Amla Infused", "Soft & Nourished Hair"],
     image: showcaseShampoo,
+    accent: "hsl(var(--gold))",
   },
   {
     name: "Herbal Soap",
     tagline: "Natural Skin Purifier",
     highlights: ["Reduces Acne", "Handcrafted with Herbs", "Nourishes & Hydrates"],
     image: showcaseSoap,
+    accent: "hsl(var(--gold))",
   },
   {
     name: "Velvet Ritual Conditioner",
     tagline: "Advanced Hair Transformation",
     highlights: ["Deeply Hydrates", "Enhances Shine", "Daily Shield Protection"],
     image: showcaseConditioner,
+    accent: "hsl(var(--gold))",
   },
 ];
 
@@ -44,35 +50,77 @@ const ProductShowcase = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
   const [activeIndex, setActiveIndex] = useState(0);
-  const [initialLoad, setInitialLoad] = useState(true);
+  const [direction, setDirection] = useState(0); // -1 left, 1 right
+  const [isFlipping, setIsFlipping] = useState(false);
 
-  // Preload all images on mount
+  // Preload images
   useEffect(() => {
-    let loaded = 0;
-    const onDone = () => {
-      loaded++;
-      if (loaded === showcaseProducts.length) setInitialLoad(false);
-    };
     showcaseProducts.forEach((p) => {
       const img = new Image();
       img.src = p.image;
-      img.onload = onDone;
-      img.onerror = onDone;
     });
-    const fallback = setTimeout(() => setInitialLoad(false), 2000);
-    return () => clearTimeout(fallback);
   }, []);
+
+  const goTo = useCallback(
+    (newIndex: number, dir: number) => {
+      if (isFlipping) return;
+      setIsFlipping(true);
+      setDirection(dir);
+      setActiveIndex(newIndex);
+      setTimeout(() => setIsFlipping(false), 700);
+    },
+    [isFlipping]
+  );
+
+  const goNext = useCallback(() => {
+    goTo((activeIndex + 1) % showcaseProducts.length, 1);
+  }, [activeIndex, goTo]);
+
+  const goPrev = useCallback(() => {
+    goTo((activeIndex - 1 + showcaseProducts.length) % showcaseProducts.length, -1);
+  }, [activeIndex, goTo]);
 
   // Auto-scroll
   useEffect(() => {
-    if (initialLoad) return;
-    const timer = setTimeout(() => {
-      setActiveIndex((prev) => (prev + 1) % showcaseProducts.length);
-    }, 5000);
-    return () => clearTimeout(timer);
-  }, [activeIndex, initialLoad]);
+    const timer = setInterval(goNext, 5000);
+    return () => clearInterval(timer);
+  }, [goNext]);
 
   const activeProduct = showcaseProducts[activeIndex];
+
+  // 3D card variants
+  const cardVariants = {
+    enter: (dir: number) => ({
+      rotateY: dir > 0 ? 90 : -90,
+      opacity: 0,
+      scale: 0.85,
+    }),
+    center: {
+      rotateY: 0,
+      opacity: 1,
+      scale: 1,
+    },
+    exit: (dir: number) => ({
+      rotateY: dir > 0 ? -90 : 90,
+      opacity: 0,
+      scale: 0.85,
+    }),
+  };
+
+  const infoVariants = {
+    enter: (dir: number) => ({
+      x: dir > 0 ? 80 : -80,
+      opacity: 0,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+    },
+    exit: (dir: number) => ({
+      x: dir > 0 ? -80 : 80,
+      opacity: 0,
+    }),
+  };
 
   return (
     <section className="relative py-24 md:py-32 bg-background overflow-hidden">
@@ -80,7 +128,7 @@ const ProductShowcase = () => {
 
       <div ref={ref} className="container mx-auto px-6 relative z-10">
         {/* Heading */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-16 md:mb-20">
           <motion.p
             className="text-gold tracking-[0.4em] uppercase text-[11px] font-body font-medium mb-4"
             initial={{ opacity: 0, y: 15 }}
@@ -105,85 +153,156 @@ const ProductShowcase = () => {
           />
         </div>
 
-        {/* Main showcase — image left, info right */}
-        <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20 max-w-5xl mx-auto">
-          {/* Left: Active product image — circular */}
+        {/* Main 3D Card Showcase */}
+        <div className="flex flex-col lg:flex-row items-center gap-10 lg:gap-16 max-w-5xl mx-auto">
+          {/* 3D Flip Card */}
           <motion.div
             className="relative flex-shrink-0"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.7, delay: 0.2 }}
+            style={{ perspective: 1200 }}
           >
-            {/* Outer decorative ring */}
-            <motion.div
-              className="absolute -inset-4 rounded-full pointer-events-none"
-              style={{ border: "1px solid hsl(var(--gold) / 0.15)" }}
-              animate={{ rotate: 360 }}
-              transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-            />
-            <motion.div
-              className="absolute -inset-8 rounded-full pointer-events-none"
-              style={{ border: "1px dashed hsl(var(--gold) / 0.08)" }}
-              animate={{ rotate: -360 }}
-              transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
-            />
+            {/* Navigation arrows on card */}
+            <button
+              onClick={goPrev}
+              className="absolute -left-4 md:-left-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 md:w-12 md:h-12 rounded-full bg-background/80 backdrop-blur-sm border border-gold/20 flex items-center justify-center text-foreground/70 hover:text-gold hover:border-gold/50 transition-all duration-300 shadow-lg hover:shadow-gold/10"
+              aria-label="Previous product"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={goNext}
+              className="absolute -right-4 md:-right-6 top-1/2 -translate-y-1/2 z-30 w-10 h-10 md:w-12 md:h-12 rounded-full bg-background/80 backdrop-blur-sm border border-gold/20 flex items-center justify-center text-foreground/70 hover:text-gold hover:border-gold/50 transition-all duration-300 shadow-lg hover:shadow-gold/10"
+              aria-label="Next product"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
 
             <div
-              className="w-64 h-64 md:w-80 md:h-80 lg:w-[22rem] lg:h-[22rem] rounded-full overflow-hidden relative flex items-center justify-center"
-              style={{
-                boxShadow: "0 8px 40px hsl(var(--gold) / 0.15), 0 2px 20px hsl(var(--forest) / 0.08)",
-                border: "3px solid hsl(var(--gold) / 0.25)",
-                background: "linear-gradient(160deg, hsl(var(--cream)), hsl(var(--secondary)), hsl(var(--cream)))",
-              }}
+              className="w-72 h-[22rem] md:w-80 md:h-[26rem] lg:w-[22rem] lg:h-[28rem] relative"
+              style={{ transformStyle: "preserve-3d" }}
             >
-              <AnimatePresence mode="wait">
-                <motion.img
+              <AnimatePresence mode="wait" custom={direction}>
+                <motion.div
                   key={activeIndex}
-                  src={activeProduct.image}
-                  alt={activeProduct.name}
-                  initial={{ opacity: 0, scale: 0.85, rotate: -5 }}
-                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
-                  exit={{ opacity: 0, scale: 0.85, rotate: 5 }}
-                  transition={{ duration: 0.5, ease: "easeOut" }}
-                  className="w-[75%] h-[75%] object-contain drop-shadow-xl relative z-10"
-                />
+                  custom={direction}
+                  variants={cardVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{
+                    rotateY: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
+                    opacity: { duration: 0.4 },
+                    scale: { duration: 0.5 },
+                  }}
+                  className="absolute inset-0 rounded-2xl overflow-hidden flex items-center justify-center"
+                  style={{
+                    backfaceVisibility: "hidden",
+                    background: "linear-gradient(160deg, hsl(var(--cream)), hsl(var(--secondary)), hsl(var(--cream)))",
+                    boxShadow:
+                      "0 25px 60px -15px hsl(var(--gold) / 0.18), 0 10px 30px -10px hsl(var(--forest) / 0.12), inset 0 1px 0 hsl(var(--gold) / 0.1)",
+                    border: "2px solid hsl(var(--gold) / 0.2)",
+                  }}
+                >
+                  {/* Decorative corner accents */}
+                  <div className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-gold/30 rounded-tl-lg" />
+                  <div className="absolute top-3 right-3 w-6 h-6 border-t-2 border-r-2 border-gold/30 rounded-tr-lg" />
+                  <div className="absolute bottom-3 left-3 w-6 h-6 border-b-2 border-l-2 border-gold/30 rounded-bl-lg" />
+                  <div className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-gold/30 rounded-br-lg" />
+
+                  {/* Shimmer overlay */}
+                  <motion.div
+                    className="absolute inset-0 pointer-events-none z-20"
+                    style={{
+                      background: "linear-gradient(105deg, transparent 40%, hsl(var(--gold) / 0.08) 45%, hsl(var(--gold) / 0.15) 50%, hsl(var(--gold) / 0.08) 55%, transparent 60%)",
+                    }}
+                    animate={{ x: ["-100%", "200%"] }}
+                    transition={{ duration: 3, repeat: Infinity, repeatDelay: 4, ease: "easeInOut" }}
+                  />
+
+                  {/* Product image */}
+                  <motion.img
+                    src={activeProduct.image}
+                    alt={activeProduct.name}
+                    className="w-[70%] h-[70%] object-contain drop-shadow-2xl relative z-10"
+                    initial={{ scale: 0.8, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 0.3, duration: 0.5, ease: "easeOut" }}
+                  />
+
+                  {/* Bottom label */}
+                  <div className="absolute bottom-4 left-0 right-0 text-center z-20">
+                    <motion.span
+                      className="inline-block px-4 py-1.5 rounded-full text-[10px] font-body font-semibold tracking-[0.2em] uppercase bg-background/80 backdrop-blur-sm text-gold border border-gold/20"
+                      initial={{ y: 20, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      transition={{ delay: 0.5, duration: 0.4 }}
+                    >
+                      {activeProduct.tagline}
+                    </motion.span>
+                  </div>
+
+                  {/* Radial glow */}
+                  <div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                      background: "radial-gradient(ellipse at 50% 85%, hsl(var(--gold) / 0.08), transparent 60%)",
+                    }}
+                  />
+                </motion.div>
               </AnimatePresence>
-              <div
-                className="absolute inset-0 pointer-events-none rounded-full"
-                style={{
-                  background: "radial-gradient(ellipse at 50% 80%, hsl(var(--gold) / 0.06), transparent 70%)",
-                }}
-              />
             </div>
           </motion.div>
 
-          {/* Right: Product info */}
-        <div className="text-center lg:text-left flex-1">
-            <AnimatePresence mode="wait">
+          {/* Right: Product Info */}
+          <div className="text-center lg:text-left flex-1 min-w-0">
+            <AnimatePresence mode="wait" custom={direction}>
               <motion.div
                 key={`info-${activeIndex}`}
-                initial={{ opacity: 0, x: 40 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -40 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
+                custom={direction}
+                variants={infoVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               >
-                <p className="text-[11px] font-body font-medium tracking-[0.3em] uppercase text-gold mb-2">
-                  {activeProduct.tagline}
-                </p>
-                <h3 className="text-2xl md:text-4xl font-heading font-semibold text-foreground mb-6">
+                {/* Product counter */}
+                <div className="flex items-center gap-3 justify-center lg:justify-start mb-4">
+                  <span className="text-gold font-heading text-2xl font-bold">
+                    0{activeIndex + 1}
+                  </span>
+                  <span className="w-8 h-px bg-gold/40" />
+                  <span className="text-muted-foreground font-body text-xs tracking-wider">
+                    0{showcaseProducts.length}
+                  </span>
+                </div>
+
+                <h3 className="text-2xl md:text-4xl font-heading font-semibold text-foreground mb-3">
                   {activeProduct.name}
                 </h3>
-                <div className="flex flex-wrap justify-center lg:justify-start gap-3 mb-8">
+                <p className="text-[11px] font-body font-medium tracking-[0.3em] uppercase text-gold mb-6">
+                  {activeProduct.tagline}
+                </p>
+
+                <div className="space-y-3 mb-8">
                   {activeProduct.highlights.map((h, idx) => (
-                    <motion.span
+                    <motion.div
                       key={h}
-                      initial={{ opacity: 0, y: 12, scale: 0.9 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      transition={{ delay: 0.3 + idx * 0.08, type: "spring", stiffness: 200, damping: 20 }}
-                      className="px-4 py-2 rounded-full text-xs font-body font-medium border border-gold/20 text-foreground/80 bg-cream"
+                      initial={{ opacity: 0, x: 30 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{
+                        delay: 0.4 + idx * 0.1,
+                        duration: 0.4,
+                        ease: "easeOut",
+                      }}
+                      className="flex items-center gap-3 justify-center lg:justify-start"
                     >
-                      ✓ {h}
-                    </motion.span>
+                      <span className="w-1.5 h-1.5 rounded-full bg-gold flex-shrink-0" />
+                      <span className="text-sm font-body text-foreground/80">
+                        {h}
+                      </span>
+                    </motion.div>
                   ))}
                 </div>
               </motion.div>
@@ -191,20 +310,22 @@ const ProductShowcase = () => {
           </div>
         </div>
 
-        {/* Bottom: Circular thumbnail strip */}
-        <div className="flex justify-center gap-6 md:gap-8 mt-16">
+        {/* Bottom: Thumbnail Strip with Progress */}
+        <div className="flex justify-center gap-4 md:gap-6 mt-14">
           {showcaseProducts.map((product, i) => (
             <button
               key={product.name}
               onClick={() => {
-                if (i !== activeIndex) setActiveIndex(i);
+                if (i !== activeIndex && !isFlipping) {
+                  goTo(i, i > activeIndex ? 1 : -1);
+                }
               }}
               className="group relative flex flex-col items-center gap-2 transition-all duration-500"
             >
               <motion.div
-                className={`w-14 h-14 md:w-[4.5rem] md:h-[4.5rem] rounded-full overflow-hidden transition-all duration-500 ${
+                className={`relative w-14 h-14 md:w-16 md:h-16 rounded-xl overflow-hidden transition-all duration-500 ${
                   activeIndex === i
-                    ? "ring-2 ring-gold ring-offset-2 ring-offset-background scale-110 shadow-lg shadow-gold/10"
+                    ? "ring-2 ring-gold ring-offset-2 ring-offset-background scale-110 shadow-lg shadow-gold/15"
                     : "ring-1 ring-border opacity-50 group-hover:opacity-80 group-hover:scale-105"
                 }`}
                 whileHover={{ scale: activeIndex === i ? 1.1 : 1.08 }}
@@ -215,21 +336,26 @@ const ProductShowcase = () => {
                   alt={product.name}
                   className="w-full h-full object-cover"
                 />
+                {/* Active progress bar */}
+                {activeIndex === i && (
+                  <motion.div
+                    className="absolute bottom-0 left-0 h-0.5 bg-gold"
+                    initial={{ width: "0%" }}
+                    animate={{ width: "100%" }}
+                    transition={{ duration: 5, ease: "linear" }}
+                    key={`progress-${activeIndex}-${Date.now()}`}
+                  />
+                )}
               </motion.div>
               <span
                 className={`text-[9px] md:text-[10px] font-body tracking-wider uppercase transition-all duration-300 ${
-                  activeIndex === i ? "text-gold font-semibold" : "text-muted-foreground"
+                  activeIndex === i
+                    ? "text-gold font-semibold"
+                    : "text-muted-foreground"
                 }`}
               >
                 {product.name.split(" ")[0]}
               </span>
-              {activeIndex === i && (
-                <motion.div
-                  layoutId="showcase-dot"
-                  className="w-1.5 h-1.5 rounded-full bg-gold"
-                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                />
-              )}
             </button>
           ))}
         </div>
