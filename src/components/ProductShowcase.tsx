@@ -3,7 +3,7 @@ import { useRef, useEffect, useState, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import showcaseSerum from "@/assets/product-new-botanical-updated.jpeg";
-import showcaseHairOil from "@/assets/showcase-hairoil.png";
+import showcaseHairOil from "@/assets/product-hairoil-updated.jpeg";
 import showcaseShampoo from "@/assets/product-shampoo-updated.jpeg";
 import showcaseSoap from "@/assets/showcase-soap.png";
 import showcaseConditioner from "@/assets/product-conditioner-updated.jpeg";
