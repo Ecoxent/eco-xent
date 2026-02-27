@@ -137,7 +137,7 @@ const ProductShowcase = () => {
 
   // Auto-scroll
   useEffect(() => {
-    const timer = setInterval(goNext, 5000);
+    const timer = setInterval(goNext, 8000);
     return () => clearInterval(timer);
   }, [goNext]);
 
@@ -392,7 +392,7 @@ const ProductShowcase = () => {
                     className="absolute bottom-0 left-0 h-0.5 bg-gold"
                     initial={{ width: "0%" }}
                     animate={{ width: "100%" }}
-                    transition={{ duration: 5, ease: "linear" }}
+                    transition={{ duration: 8, ease: "linear" }}
                     key={`progress-${activeIndex}-${Date.now()}`}
                   />
                 )}
