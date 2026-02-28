@@ -95,7 +95,7 @@ const Navbar = ({ cartCount, onCartClick }: { cartCount: number; onCartClick: ()
           </motion.a>
 
           {/* Desktop nav — centered with pill indicator */}
-          <div className="hidden md:flex items-center gap-0.5 absolute left-1/2 -translate-x-1/2 rounded-full p-1 border border-white/15" style={{ background: "hsla(0, 0%, 100%, 0.08)" }}>
+          <div className="hidden lg:flex items-center gap-0.5 absolute left-1/2 -translate-x-1/2 rounded-full p-1 border border-white/15" style={{ background: "hsla(0, 0%, 100%, 0.08)" }}>
             {navItems.map((item, i) => {
               const isActive = item.isPage ? location.pathname === item.href : activeSection === item.href;
               return (
@@ -159,7 +159,7 @@ const Navbar = ({ cartCount, onCartClick }: { cartCount: number; onCartClick: ()
 
             {/* Mobile hamburger */}
             <motion.button
-              className="md:hidden w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-all"
+              className="lg:hidden w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-all"
               onClick={() => setMenuOpen(!menuOpen)}
               whileTap={{ scale: 0.9 }}
             >
@@ -187,7 +187,7 @@ const Navbar = ({ cartCount, onCartClick }: { cartCount: number; onCartClick: ()
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="md:hidden border-t border-white/10 overflow-hidden relative"
+            className="lg:hidden border-t border-white/10 overflow-hidden relative"
             style={{ background: "hsla(90, 35%, 18%, 0.98)", backdropFilter: "blur(16px)" }}
           >
             <div className="px-5 py-4 flex flex-col gap-1">
