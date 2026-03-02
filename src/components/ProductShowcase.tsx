@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import showcaseSerum from "@/assets/product-new-botanical-with-ingredients.jpg";
 import showcaseHairOil from "@/assets/product-hairoil-with-ingredients.jpg";
 import showcaseShampoo from "@/assets/product-shampoo-with-ingredients.jpg";
-import showcaseSoap from "@/assets/showcase-soap.png";
+import showcaseSoap from "@/assets/herbal-soap-new.png";
 import showcaseConditioner from "@/assets/product-conditioner-with-ingredients.jpg";
 
 const showcaseProducts = [
