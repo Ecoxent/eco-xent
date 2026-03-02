@@ -187,8 +187,8 @@ const FounderChatbot = () => {
                   <Brain className="w-5 h-5 text-gold" />
                 </div>
                 <div>
-                  <h3 className="text-white font-heading font-semibold text-sm">Healing Coach AI</h3>
-                  <p className="text-white/50 text-[10px] font-body">NLP • Silva Method • Coaching</p>
+                  <h3 className="text-white font-heading font-semibold text-sm">Mind Science AI</h3>
+                  <p className="text-white/50 text-[10px] font-body">NLP • Silva Method • Mind Science</p>
                 </div>
               </div>
               <button
@@ -272,7 +272,7 @@ const FounderChatbot = () => {
                 </motion.button>
               </div>
               <p className="text-[9px] text-muted-foreground text-center mt-2 font-body">
-                Healing Coach AI • NLP & Silva Method Expert
+                Mind Science AI • NLP & Silva Method Expert
               </p>
             </div>
           </motion.div>
