@@ -6,7 +6,7 @@ import CheckoutModal from "@/components/CheckoutModal";
 import productSerum from "@/assets/product-serum-with-ingredients.jpg";
 import productHairOil from "@/assets/product-hairoil-with-ingredients.jpg";
 import productShampoo from "@/assets/product-shampoo-with-ingredients.jpg";
-import productSoap from "@/assets/product-soap-premium-new.jpg";
+import productSoap from "@/assets/showcase-soap.png";
 import productConditioner from "@/assets/product-conditioner-with-ingredients.jpg";
 import productNew1 from "@/assets/product-new-botanical-with-ingredients.jpg";
 import productNew2 from "@/assets/product-soap-with-ingredients.png";
