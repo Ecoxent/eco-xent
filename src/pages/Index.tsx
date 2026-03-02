@@ -30,7 +30,7 @@ import { toast } from "sonner";
 import productSerum from "@/assets/product-serum-with-ingredients.jpg";
 import productHairOil from "@/assets/product-hairoil-with-ingredients.jpg";
 import productShampoo from "@/assets/product-shampoo-with-ingredients.jpg";
-import productSoap from "@/assets/product-soap-new.png";
+import productSoap from "@/assets/product-soap-premium-new.jpg";
 import productConditioner from "@/assets/product-conditioner-with-ingredients.jpg";
 import productNew1 from "@/assets/product-new-botanical-with-ingredients.jpg";
 import productNew2 from "@/assets/product-new-herbal.png";
