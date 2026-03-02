@@ -129,7 +129,7 @@ const AboutCeo = () => {
               animate={isHeroInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.7, delay: 0.2 }}
             >
-              <p className="text-gold tracking-[0.5em] uppercase text-[10px] md:text-[11px] font-body font-semibold mb-6">Founder & Healing Coach</p>
+              <p className="text-gold tracking-[0.5em] uppercase text-[10px] md:text-[11px] font-body font-semibold mb-6">Founder & Mind Science Expert</p>
               <h1 className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold text-white mb-4 leading-[1.1]">
                 Healing Minds.
               </h1>
