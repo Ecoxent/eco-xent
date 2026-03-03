@@ -1,5 +1,5 @@
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Brain, Heart, Users, Mic, CheckCircle, ArrowRight, MessageCircle } from "lucide-react";
 import FounderLayout from "@/components/founder/FounderLayout";
 
@@ -9,26 +9,108 @@ const services = [
     title: "Parenting Coaching",
     desc: "One-on-one sessions to overcome parenting challenges and build a stronger relationship with your child.",
     features: ["Personalized approach", "Weekly sessions", "Homework & exercises", "Progress tracking"],
+    backDesc: "Transform your parenting with structured weekly coaching. Each session builds on the last, creating measurable progress and lasting behavioral change.",
   },
   {
     icon: Heart,
     title: "Childhood Trauma Healing",
     desc: "Guided sessions to heal emotional wounds and overcome past traumas using proven mind science techniques.",
     features: ["Gentle, safe process", "NLP techniques", "Emotional release", "Inner child work"],
+    backDesc: "A compassionate, step-by-step healing journey using NLP and inner child work. Experience emotional release and freedom from wounds carried for years.",
   },
   {
     icon: Brain,
     title: "Fear & Phobia Release",
     desc: "Powerful techniques to overcome fears and phobias in yourself and your child — often in a single session.",
     features: ["Rapid results", "Painless process", "NLP & Silva Method", "Lasting freedom"],
+    backDesc: "Using advanced NLP anchoring and Silva Method visualization, fears dissolve rapidly — most clients report complete freedom after just one session.",
   },
   {
     icon: Mic,
     title: "Workshops & Seminars",
     desc: "Group sessions on effective parenting, communication, and relationship building for families and organizations.",
     features: ["Interactive format", "Group exercises", "Take-home tools", "Community support"],
+    backDesc: "Energizing group experiences with hands-on exercises, role-playing, and practical tools you can apply immediately at home and work.",
   },
 ];
+
+/* ---- Service Flip Card ---- */
+const ServiceFlipCard = ({ service, index, isInView }: { service: typeof services[0]; index: number; isInView: boolean }) => {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ delay: index * 0.1, duration: 0.5 }}
+      className="relative h-[340px] cursor-pointer group"
+      style={{ perspective: "1000px" }}
+      onMouseEnter={() => setIsFlipped(true)}
+      onMouseLeave={() => setIsFlipped(false)}
+      onClick={() => setIsFlipped(!isFlipped)}
+    >
+      <motion.div
+        className="relative w-full h-full"
+        animate={{ rotateY: isFlipped ? 180 : 0 }}
+        transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+        style={{ transformStyle: "preserve-3d" }}
+      >
+        {/* Front */}
+        <div
+          className="absolute inset-0 rounded-2xl p-8 md:p-10 border border-border bg-background overflow-hidden"
+          style={{ backfaceVisibility: "hidden" }}
+        >
+          <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-gold/60 via-gold/20 to-transparent" />
+          <div className="absolute top-0 right-0 w-24 h-24 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity duration-500" style={{ background: "radial-gradient(circle, hsl(var(--gold)), transparent)" }} />
+
+          <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 border border-gold/15 group-hover:border-gold/30 group-hover:scale-110 transition-all duration-300" style={{ background: "linear-gradient(135deg, hsl(var(--accent)), hsl(var(--cream)))" }}>
+            <service.icon className="w-6 h-6 text-gold-dark" />
+          </div>
+
+          <h3 className="font-heading font-bold text-foreground text-xl mb-3">{service.title}</h3>
+          <p className="text-muted-foreground font-body text-sm leading-relaxed mb-6">{service.desc}</p>
+
+          <div className="space-y-2">
+            {service.features.map((f, j) => (
+              <div key={j} className="flex items-center gap-3">
+                <CheckCircle className="w-4 h-4 text-gold/60 flex-shrink-0" />
+                <span className="text-foreground/80 font-body text-sm">{f}</span>
+              </div>
+            ))}
+          </div>
+          <div className="absolute bottom-4 right-4 text-[9px] text-gold/40 font-body tracking-wider uppercase">Hover to flip</div>
+        </div>
+
+        {/* Back */}
+        <div
+          className="absolute inset-0 rounded-2xl p-8 md:p-10 border border-gold/25 overflow-hidden flex flex-col justify-between"
+          style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)", background: "linear-gradient(145deg, hsl(var(--forest)), hsl(var(--forest-dark)))" }}
+        >
+          <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, hsl(0 0% 100%) 1px, transparent 0)", backgroundSize: "24px 24px" }} />
+          <div className="relative z-10">
+            <service.icon className="w-10 h-10 text-gold mb-5" />
+            <h3 className="font-heading font-bold text-white text-xl mb-4">{service.title}</h3>
+            <p className="text-white/70 font-body text-sm leading-relaxed mb-6">{service.backDesc}</p>
+          </div>
+          <div className="relative z-10">
+            <motion.a
+              href={`https://wa.me/923295991062?text=I'm interested in ${service.title}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2.5 px-6 py-3 rounded-full font-body font-bold text-sm tracking-wide text-forest-dark"
+              style={{ background: "linear-gradient(135deg, hsl(var(--gold)), hsl(var(--gold-light)))" }}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.97 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              Book Now <ArrowRight className="w-4 h-4" />
+            </motion.a>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
 
 const FounderServices = () => {
   const servicesRef = useRef(null);
@@ -57,54 +139,12 @@ const FounderServices = () => {
         </div>
       </section>
 
-      {/* Services Grid */}
+      {/* Services Grid — Flip Cards */}
       <section ref={servicesRef} className="py-20 md:py-28 bg-background">
         <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-6">
             {services.map((s, i) => (
-              <motion.div
-                key={s.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={isServicesInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
-                whileHover={{ y: -6, boxShadow: "0 20px 50px -12px hsla(var(--gold), 0.12)" }}
-                className="rounded-2xl p-8 md:p-10 border border-border hover:border-gold/20 transition-all duration-500 bg-background relative overflow-hidden group"
-              >
-                <div className="absolute top-0 left-0 w-1 h-full bg-gradient-to-b from-gold/60 via-gold/20 to-transparent" />
-                <div className="absolute top-0 right-0 w-24 h-24 opacity-[0.03] group-hover:opacity-[0.06] transition-opacity duration-500" style={{ background: "radial-gradient(circle, hsl(var(--gold)), transparent)" }} />
-
-                <div className="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 border border-gold/15 group-hover:border-gold/30 group-hover:scale-110 transition-all duration-300" style={{ background: "linear-gradient(135deg, hsl(var(--accent)), hsl(var(--cream)))" }}>
-                  <s.icon className="w-6 h-6 text-gold-dark" />
-                </div>
-
-                <h3 className="font-heading font-bold text-foreground text-xl mb-3">{s.title}</h3>
-                <p className="text-muted-foreground font-body text-sm leading-relaxed mb-6">{s.desc}</p>
-
-                <div className="space-y-2.5 mb-8">
-                  {s.features.map((f, j) => (
-                    <motion.div
-                      key={j}
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={isServicesInView ? { opacity: 1, x: 0 } : {}}
-                      transition={{ delay: i * 0.1 + j * 0.05 + 0.2 }}
-                      className="flex items-center gap-3"
-                    >
-                      <CheckCircle className="w-4 h-4 text-gold/60 flex-shrink-0" />
-                      <span className="text-foreground/80 font-body text-sm">{f}</span>
-                    </motion.div>
-                  ))}
-                </div>
-
-                <motion.a
-                  href={`https://wa.me/923295991062?text=I'm interested in ${s.title}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-gold-dark text-sm font-body font-semibold hover:gap-3 transition-all duration-300"
-                  whileHover={{ x: 4 }}
-                >
-                  Book Now <ArrowRight className="w-4 h-4" />
-                </motion.a>
-              </motion.div>
+              <ServiceFlipCard key={s.title} service={s} index={i} isInView={isServicesInView} />
             ))}
           </div>
         </div>
