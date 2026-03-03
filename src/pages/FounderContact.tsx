@@ -5,11 +5,59 @@ import FounderLayout from "@/components/founder/FounderLayout";
 import { toast } from "sonner";
 
 const contactMethods = [
-  { icon: Phone, label: "Phone", value: "+92 329 5991062", href: "tel:+923295991062" },
-  { icon: MessageCircle, label: "WhatsApp", value: "Chat on WhatsApp", href: "https://wa.me/923295991062" },
-  { icon: Mail, label: "Email", value: "info@eco-xent.com", href: "mailto:info@eco-xent.com" },
-  { icon: Clock, label: "Availability", value: "Mon–Sat, 10 AM – 8 PM", href: null },
+  { icon: Phone, label: "Phone", value: "+92 329 5991062", href: "tel:+923295991062", backText: "Call directly for immediate assistance during working hours." },
+  { icon: MessageCircle, label: "WhatsApp", value: "Chat on WhatsApp", href: "https://wa.me/923295991062", backText: "Preferred method — get a response within hours, anytime." },
+  { icon: Mail, label: "Email", value: "info@eco-xent.com", href: "mailto:info@eco-xent.com", backText: "For detailed inquiries, proposals, or collaboration requests." },
+  { icon: Clock, label: "Availability", value: "Mon–Sat, 10 AM – 8 PM", href: null, backText: "Sessions available by appointment. Emergency slots on request." },
 ];
+
+/* ---- Contact Flip Card ---- */
+const ContactFlipCard = ({ contact, index }: { contact: typeof contactMethods[0]; index: number }) => {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  const content = (
+    <motion.div
+      initial={{ opacity: 0, x: -20 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ delay: index * 0.08, duration: 0.5 }}
+      className="relative h-[180px] lg:h-[160px] cursor-pointer group"
+      style={{ perspective: "1000px" }}
+      onMouseEnter={() => setIsFlipped(true)}
+      onMouseLeave={() => setIsFlipped(false)}
+      onClick={() => setIsFlipped(!isFlipped)}
+    >
+      <motion.div
+        className="relative w-full h-full"
+        animate={{ rotateY: isFlipped ? 180 : 0 }}
+        transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+        style={{ transformStyle: "preserve-3d" }}
+      >
+        {/* Front */}
+        <div className="absolute inset-0 rounded-2xl p-6 border border-border bg-background overflow-hidden" style={{ backfaceVisibility: "hidden" }}>
+          <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-4 border border-gold/15 group-hover:border-gold/30 group-hover:scale-110 transition-all duration-300" style={{ background: "linear-gradient(135deg, hsl(var(--accent)), hsl(var(--cream)))" }}>
+            <contact.icon className="w-5 h-5 text-gold-dark" />
+          </div>
+          <p className="text-xs text-muted-foreground font-body tracking-wider uppercase mb-1">{contact.label}</p>
+          <p className="text-foreground font-body text-sm font-medium">{contact.value}</p>
+          <div className="absolute bottom-3 right-3 text-[8px] text-gold/30 font-body tracking-wider uppercase">Hover</div>
+        </div>
+        {/* Back */}
+        <div className="absolute inset-0 rounded-2xl p-6 border border-gold/25 overflow-hidden flex flex-col justify-center" style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)", background: "linear-gradient(145deg, hsl(var(--forest)), hsl(var(--forest-dark)))" }}>
+          <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, hsl(0 0% 100%) 1px, transparent 0)", backgroundSize: "24px 24px" }} />
+          <div className="relative z-10">
+            <contact.icon className="w-7 h-7 text-gold mb-3" />
+            <p className="text-white/80 font-body text-sm leading-relaxed">{contact.backText}</p>
+          </div>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+
+  if (contact.href) {
+    return content;
+  }
+  return content;
+};
 
 const FounderContact = () => {
   const [form, setForm] = useState({ name: "", phone: "", message: "" });
@@ -22,7 +70,6 @@ const FounderContact = () => {
       return;
     }
     setSending(true);
-    // Send via WhatsApp
     const text = `Hi, I'm ${form.name}.\nPhone: ${form.phone}\n\n${form.message}`;
     window.open(`https://wa.me/923295991062?text=${encodeURIComponent(text)}`, "_blank");
     setSending(false);
@@ -56,34 +103,10 @@ const FounderContact = () => {
       <section className="py-20 md:py-28 bg-background">
         <div className="container mx-auto px-6">
           <div className="max-w-5xl mx-auto grid lg:grid-cols-5 gap-8">
-            {/* Contact Methods */}
+            {/* Contact Methods — Flip Cards */}
             <div className="lg:col-span-2 grid grid-cols-2 lg:grid-cols-1 gap-4">
               {contactMethods.map((c, i) => (
-                <motion.div
-                  key={c.label}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.08, duration: 0.5 }}
-                  className="rounded-2xl p-6 border border-border hover:border-gold/20 transition-all duration-300 bg-background group"
-                >
-                  {c.href ? (
-                    <a href={c.href} target={c.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className="block">
-                      <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-4 border border-gold/15 group-hover:border-gold/30 group-hover:scale-110 transition-all duration-300" style={{ background: "linear-gradient(135deg, hsl(var(--accent)), hsl(var(--cream)))" }}>
-                        <c.icon className="w-5 h-5 text-gold-dark" />
-                      </div>
-                      <p className="text-xs text-muted-foreground font-body tracking-wider uppercase mb-1">{c.label}</p>
-                      <p className="text-foreground font-body text-sm font-medium">{c.value}</p>
-                    </a>
-                  ) : (
-                    <div>
-                      <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-4 border border-gold/15" style={{ background: "linear-gradient(135deg, hsl(var(--accent)), hsl(var(--cream)))" }}>
-                        <c.icon className="w-5 h-5 text-gold-dark" />
-                      </div>
-                      <p className="text-xs text-muted-foreground font-body tracking-wider uppercase mb-1">{c.label}</p>
-                      <p className="text-foreground font-body text-sm font-medium">{c.value}</p>
-                    </div>
-                  )}
-                </motion.div>
+                <ContactFlipCard key={c.label} contact={c} index={i} />
               ))}
             </div>
 
