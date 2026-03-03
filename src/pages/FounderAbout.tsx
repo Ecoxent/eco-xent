@@ -1,10 +1,17 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { Brain, Heart, Shield, Sparkles, Users, Award, BookOpen, Lightbulb } from "lucide-react";
+import { Brain, Heart, Shield, Sparkles, Users, Award, BookOpen, Lightbulb, MessageCircle, Zap } from "lucide-react";
 import FounderLayout from "@/components/founder/FounderLayout";
 
+const services = [
+  { icon: Users, title: "Parenting Coaching", desc: "One-on-one sessions to overcome parenting challenges and build a stronger relationship with your child." },
+  { icon: Heart, title: "Childhood Trauma Healing", desc: "Guided sessions to heal emotional wounds and overcome past traumas." },
+  { icon: Shield, title: "Fear & Phobia Release", desc: "Techniques to overcome fears and phobias in yourself and your child." },
+  { icon: MessageCircle, title: "Workshops & Seminars", desc: "Group sessions on effective parenting, communication, and relationship building." },
+];
+
 const benefits = [
-  { icon: Heart, text: "Instant healing from past parenting challenges and emotional wounds." },
+  { icon: Zap, text: "Instant healing from past parenting challenges and emotional wounds." },
   { icon: Users, text: "Improved relationship with your child and family members." },
   { icon: Brain, text: "Effective communication and conflict resolution skills." },
   { icon: Sparkles, text: "Increased self-awareness and self-love as a parent." },
@@ -27,9 +34,11 @@ const techniques = [
 
 const FounderAbout = () => {
   const aboutRef = useRef(null);
+  const servicesRef = useRef(null);
   const benefitsRef = useRef(null);
   const techniquesRef = useRef(null);
   const isAboutInView = useInView(aboutRef, { once: true, margin: "-50px" });
+  const isServicesInView = useInView(servicesRef, { once: true, margin: "-50px" });
   const isBenefitsInView = useInView(benefitsRef, { once: true, margin: "-50px" });
   const isTechniquesInView = useInView(techniquesRef, { once: true, margin: "-50px" });
 
@@ -68,8 +77,45 @@ const FounderAbout = () => {
         </div>
       </section>
 
+      {/* Parenting Services */}
+      <section ref={servicesRef} className="py-20 md:py-28 bg-background relative">
+        <div className="container mx-auto px-6">
+          <motion.div
+            className="text-center mb-14"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isServicesInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6 }}
+          >
+            <p className="text-gold tracking-[0.5em] uppercase text-[10px] font-body font-semibold mb-3">What I Offer</p>
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-foreground">
+              Parenting <span className="italic" style={{ color: "hsl(var(--gold-dark))" }}>Services</span>
+            </h2>
+            <div className="w-10 h-[2px] mx-auto mt-5" style={{ background: "linear-gradient(90deg, transparent, hsl(var(--gold)), transparent)" }} />
+          </motion.div>
+
+          <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-5">
+            {services.map((s, i) => (
+              <motion.div
+                key={s.title}
+                initial={{ opacity: 0, y: 25 }}
+                animate={isServicesInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: i * 0.1, duration: 0.5 }}
+                whileHover={{ y: -6, boxShadow: "0 12px 40px -12px hsla(var(--gold), 0.12)" }}
+                className="rounded-2xl p-7 border border-border hover:border-gold/20 transition-all duration-300 bg-background group"
+              >
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center border border-gold/15 group-hover:border-gold/30 group-hover:scale-110 transition-all duration-300 mb-5" style={{ background: "linear-gradient(135deg, hsl(var(--accent)), hsl(var(--cream)))" }}>
+                  <s.icon className="w-5 h-5 text-gold-dark" />
+                </div>
+                <h3 className="font-heading font-bold text-foreground text-lg mb-2">{s.title}</h3>
+                <p className="text-muted-foreground font-body text-sm leading-relaxed">{s.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Benefits */}
-      <section ref={benefitsRef} className="py-20 md:py-28 bg-background relative">
+      <section ref={benefitsRef} className="py-20 md:py-28 bg-cream relative">
         <div className="container mx-auto px-6">
           <motion.div
             className="text-center mb-14"
@@ -105,7 +151,7 @@ const FounderAbout = () => {
       </section>
 
       {/* How I Help */}
-      <section className="py-20 md:py-28 bg-cream relative">
+      <section className="py-20 md:py-28 bg-background relative">
         <div className="container mx-auto px-6">
           <motion.div
             className="text-center mb-14"
@@ -129,7 +175,7 @@ const FounderAbout = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.08, duration: 0.5 }}
-                className="flex items-center gap-4 rounded-xl p-5 border border-border bg-background hover:border-gold/20 transition-all duration-300 group"
+                className="flex items-center gap-4 rounded-xl p-5 border border-border bg-cream hover:border-gold/20 transition-all duration-300 group"
               >
                 <div className="w-8 h-8 rounded-lg flex-shrink-0 flex items-center justify-center text-xs font-heading font-bold text-gold-dark border border-gold/15" style={{ background: "linear-gradient(135deg, hsl(var(--accent)), hsl(var(--cream)))" }}>
                   {i + 1}
