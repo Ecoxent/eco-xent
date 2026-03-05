@@ -25,9 +25,9 @@ interface CheckoutModalProps {
 }
 
 const paymentMethods = [
-  { value: "COD", label: "Cash on Delivery", icon: "💵", desc: "Ghar pe delivery ke waqt payment" },
+  { value: "COD", label: "Cash on Delivery", icon: "💵", desc: "Pay when your order is delivered" },
   { value: "EasyPaisa", label: "EasyPaisa / JazzCash", icon: "📱", desc: "Mobile wallet transfer" },
-  { value: "Bank Transfer", label: "Bank Transfer", icon: "🏦", desc: "Bank account mein paise bhejein" },
+  { value: "Bank Transfer", label: "Bank Transfer", icon: "🏦", desc: "Transfer to bank account" },
 ];
 
 const CheckoutModal = ({ product, cartProducts, isOpen, onClose }: CheckoutModalProps) => {
@@ -52,7 +52,7 @@ const CheckoutModal = ({ product, cartProducts, isOpen, onClose }: CheckoutModal
     if (!product && !isCart) return;
 
     if (!form.customer_name.trim() || !form.customer_phone.trim() || !form.customer_address.trim()) {
-      toast.error("Sab fields bhar dein");
+      toast.error("Please fill all required fields");
       return;
     }
 
@@ -77,7 +77,7 @@ const CheckoutModal = ({ product, cartProducts, isOpen, onClose }: CheckoutModal
         const totalPrice = cartProducts.reduce((s, cp) => s + cp.price * cp.quantity, 0);
         const itemsList = cartProducts.map((cp) => `• ${cp.name} x${cp.quantity} (${cp.priceDisplay})`).join("\n");
         const msg = encodeURIComponent(
-          `السلام علیکم! 🌿\n*نیا آرڈر آیا ہے!*\n\n👤 نام: ${form.customer_name}\n📞 نمبر: ${form.customer_phone}\n📍 پتہ: ${form.customer_address}\n\n📦 پروڈکٹس:\n${itemsList}\n\n💰 Total: Rs.${totalPrice.toLocaleString()}\n💳 ادائیگی: ${form.payment_method}\n${form.notes ? `📝 نوٹ: ${form.notes}` : ""}\n\nشکریہ!`
+          `Hello! 🌿\n*New Order!*\n\n👤 Name: ${form.customer_name}\n📞 Phone: ${form.customer_phone}\n📍 Address: ${form.customer_address}\n\n📦 Products:\n${itemsList}\n\n💰 Total: Rs.${totalPrice.toLocaleString()}\n💳 Payment: ${form.payment_method}\n${form.notes ? `📝 Note: ${form.notes}` : ""}\n\nThank you!`
         );
         window.open(`https://wa.me/923295991062?text=${msg}`, "_blank");
       } else if (product) {
@@ -95,7 +95,7 @@ const CheckoutModal = ({ product, cartProducts, isOpen, onClose }: CheckoutModal
         if (error) throw error;
 
         const msg = encodeURIComponent(
-          `السلام علیکم! 🌿\n*نیا آرڈر آیا ہے!*\n\n👤 نام: ${form.customer_name}\n📞 نمبر: ${form.customer_phone}\n📍 پتہ: ${form.customer_address}\n\n📦 پروڈکٹ: ${product.name}\n💰 قیمت: ${product.price}\n🔢 مقدار: ${form.quantity}\n💳 ادائیگی: ${form.payment_method}\n${form.notes ? `📝 نوٹ: ${form.notes}` : ""}\n\nشکریہ!`
+          `Hello! 🌿\n*New Order!*\n\n👤 Name: ${form.customer_name}\n📞 Phone: ${form.customer_phone}\n📍 Address: ${form.customer_address}\n\n📦 Product: ${product.name}\n💰 Price: ${product.price}\n🔢 Quantity: ${form.quantity}\n💳 Payment: ${form.payment_method}\n${form.notes ? `📝 Note: ${form.notes}` : ""}\n\nThank you!`
         );
         window.open(`https://wa.me/923295991062?text=${msg}`, "_blank");
       }
@@ -103,7 +103,7 @@ const CheckoutModal = ({ product, cartProducts, isOpen, onClose }: CheckoutModal
       setStep("success");
     } catch (err) {
       console.error(err);
-      toast.error("Order submit nahi ho saka. Dobara try karein.");
+      toast.error("Order could not be submitted. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -144,7 +144,7 @@ const CheckoutModal = ({ product, cartProducts, isOpen, onClose }: CheckoutModal
             {/* Header */}
             <div className="sticky top-0 z-10 flex items-center justify-between p-6 pb-4 bg-card border-b border-primary/10">
               <div>
-                <h2 className="text-xl font-heading font-bold text-foreground">Order Karein</h2>
+                <h2 className="text-xl font-heading font-bold text-foreground">Place Order</h2>
                 {product && (
                   <p className="text-sm text-primary font-body mt-0.5">{product.name}</p>
                 )}
@@ -223,13 +223,13 @@ const CheckoutModal = ({ product, cartProducts, isOpen, onClose }: CheckoutModal
                   {/* Name */}
                   <div className="flex flex-col gap-1.5">
                     <label className="text-xs font-body font-semibold text-muted-foreground tracking-wider uppercase flex items-center gap-1.5">
-                      <User className="w-3.5 h-3.5" /> Apna Naam
+                      <User className="w-3.5 h-3.5" /> Your Name
                     </label>
                     <input
                       type="text"
                       value={form.customer_name}
                       onChange={(e) => handleChange("customer_name", e.target.value)}
-                      placeholder="Jaise: Ahmed Khan"
+                      placeholder="e.g. Ahmed Khan"
                       required
                       maxLength={100}
                       className="w-full px-4 py-3 rounded-xl bg-background border border-border focus:border-primary/50 focus:outline-none text-sm font-body text-foreground placeholder:text-muted-foreground transition-colors"
@@ -260,7 +260,7 @@ const CheckoutModal = ({ product, cartProducts, isOpen, onClose }: CheckoutModal
                     <textarea
                       value={form.customer_address}
                       onChange={(e) => handleChange("customer_address", e.target.value)}
-                      placeholder="Ghar ka pura pata — gali, mohalla, shehar"
+                      placeholder="Full delivery address — street, area, city"
                       required
                       maxLength={300}
                       rows={3}
@@ -309,13 +309,13 @@ const CheckoutModal = ({ product, cartProducts, isOpen, onClose }: CheckoutModal
                   {/* Notes */}
                   <div className="flex flex-col gap-1.5">
                     <label className="text-xs font-body font-semibold text-muted-foreground tracking-wider uppercase">
-                      Koi Note? (Optional)
+                      Any Note? (Optional)
                     </label>
                     <input
                       type="text"
                       value={form.notes}
                       onChange={(e) => handleChange("notes", e.target.value)}
-                      placeholder="Jaise: jaldi chahiye, ya koi khas hidal..."
+                      placeholder="e.g. Need urgent delivery, or any special request..."
                       maxLength={200}
                       className="w-full px-4 py-3 rounded-xl bg-background border border-border focus:border-primary/50 focus:outline-none text-sm font-body text-foreground placeholder:text-muted-foreground transition-colors"
                     />
@@ -335,11 +335,11 @@ const CheckoutModal = ({ product, cartProducts, isOpen, onClose }: CheckoutModal
                     ) : (
                       <MessageCircle className="w-4 h-4" />
                     )}
-                    {loading ? "Order ho raha hai..." : "Order Confirm Karen"}
+                    {loading ? "Processing..." : "Confirm Order"}
                   </motion.button>
 
                   <p className="text-[11px] text-muted-foreground font-body text-center leading-relaxed">
-                    Order save hoga aur WhatsApp pe confirmation milegi 🌿
+                    Order will be saved and you'll receive WhatsApp confirmation 🌿
                   </p>
                 </motion.form>
               ) : (
@@ -358,18 +358,18 @@ const CheckoutModal = ({ product, cartProducts, isOpen, onClose }: CheckoutModal
                   >
                     <CheckCircle className="w-10 h-10 text-green-500" />
                   </motion.div>
-                  <h3 className="text-2xl font-heading font-bold text-foreground">Order Ho Gaya! 🎉</h3>
-                  <p className="text-sm text-muted-foreground font-body leading-relaxed max-w-xs">
-                    Aapka order record ho gaya hai. WhatsApp pe hamari team aap se rabta karegi jald hi.
-                  </p>
-                  <p className="text-xs text-primary font-body">JazakAllah Khair ❤️</p>
+                   <h3 className="text-2xl font-heading font-bold text-foreground">Order Placed! 🎉</h3>
+                   <p className="text-sm text-muted-foreground font-body leading-relaxed max-w-xs">
+                     Your order has been recorded. Our team will contact you on WhatsApp shortly.
+                   </p>
+                   <p className="text-xs text-primary font-body">Thank You ❤️</p>
                   <motion.button
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
                     onClick={handleClose}
                     className="mt-2 px-8 py-3 rounded-full border border-primary/30 text-primary font-body text-sm font-semibold hover:bg-primary/5 transition-all duration-200"
                   >
-                    Theek Hai
+                    Done
                   </motion.button>
                 </motion.div>
               )}

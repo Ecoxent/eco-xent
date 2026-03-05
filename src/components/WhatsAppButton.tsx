@@ -19,7 +19,7 @@ const WhatsAppButton = forwardRef<HTMLDivElement>((_props, ref) => {
 
   const handleClick = () => {
     const message = encodeURIComponent(
-      "السلام علیکم! 🌿\nMujhe Eco-Xent products ke baare mein information chahiye.\nOrder karna chahta/chahti hun."
+      "Hello! 🌿\nI'd like to know about Eco-Xent products.\nI want to place an order."
     );
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${message}`, "_blank");
   };
@@ -46,7 +46,7 @@ const WhatsAppButton = forwardRef<HTMLDivElement>((_props, ref) => {
                   className="bg-white text-gray-800 text-sm font-body font-medium px-4 py-2.5 rounded-2xl shadow-2xl max-w-[200px] text-right leading-snug"
                   style={{ boxShadow: "0 8px 32px rgba(0,0,0,0.15)" }}
                 >
-                  WhatsApp pe Order karein! 🛍️
+                  Order on WhatsApp! 🛍️
                   <div
                     className="absolute bottom-[-6px] right-5 w-3 h-3 bg-white rotate-45"
                     style={{ boxShadow: "2px 2px 4px rgba(0,0,0,0.05)" }}
