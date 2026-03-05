@@ -91,7 +91,7 @@ async function streamChat({
 
 const WELCOME_MSG: Msg = {
   role: "assistant",
-  content: "Assalam o Alaikum! 🌿 Main Eco-Xent ka AI assistant hoon. Aap mujh se kisi bhi language mein baat kar sakte hain — Urdu, English, Hindi, Arabic, ya koi bhi! Kya madad kar sakta hoon?",
+  content: "Hello! 🌿 I'm the Eco-Xent AI Assistant. How can I help you today? Feel free to ask about our products, ingredients, or place an order!",
 };
 
 const AIChatbot = () => {

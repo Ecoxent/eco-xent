@@ -106,6 +106,9 @@ const Navbar = ({ cartCount, onCartClick }: { cartCount: number; onCartClick: ()
                     if (item.isPage) {
                       e.preventDefault();
                       navigate(item.href);
+                    } else if (location.pathname !== "/") {
+                      e.preventDefault();
+                      navigate("/" + item.href);
                     } else {
                       setActiveSection(item.href);
                     }
@@ -202,6 +205,9 @@ const Navbar = ({ cartCount, onCartClick }: { cartCount: number; onCartClick: ()
                       if (item.isPage) {
                         e.preventDefault();
                         navigate(item.href);
+                      } else if (location.pathname !== "/") {
+                        e.preventDefault();
+                        navigate("/" + item.href);
                       }
                     }}
                     initial={{ opacity: 0, x: -20 }}

@@ -20,7 +20,7 @@ const MobileStickyBar = forwardRef<HTMLDivElement>((_props, ref) => {
 
   const handleOrder = () => {
     const msg = encodeURIComponent(
-      "السلام علیکم! Mujhe Eco-Xent products ke baare mein order karna hai. 🌿\nKripya mujhe available products aur prices batayein."
+      "Hello! I'd like to order Eco-Xent products. 🌿\nPlease share available products and prices."
     );
     window.open(`https://wa.me/923295991062?text=${msg}`, "_blank");
   };
@@ -47,7 +47,7 @@ const MobileStickyBar = forwardRef<HTMLDivElement>((_props, ref) => {
             >
               <div className="flex-1 min-w-0">
                 <p className="font-heading font-bold text-foreground text-sm leading-tight">
-                  Abhi Order Karein 🌿
+                  Order Now 🌿
                 </p>
                 <p className="text-muted-foreground font-body text-xs truncate">
                   COD available • Free delivery on orders

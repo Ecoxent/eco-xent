@@ -49,7 +49,7 @@ const products: Product[] = [
   {
     id: 4, name: "Herbal Soap", tagline: "Pure Botanical",
     description: "Healed irritated, acne-prone skin naturally. Handcrafted organic herbs draw out impurities and restore your skin's balance without any harsh chemicals.",
-    price: 650, originalPrice: 850, priceDisplay: "Rs.650", originalPriceDisplay: "Rs.850",
+    price: 1200, originalPrice: 1500, priceDisplay: "Rs.1,200", originalPriceDisplay: "Rs.1,500",
     image: productSoap, discount: 24, badge: "Limited", category: "Skincare",
   },
   {

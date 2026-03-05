@@ -39,7 +39,7 @@ const productMap: Record<number, { name: string; price: number; priceDisplay: st
   1: { name: "Botanic Shield Serum", price: 1550, priceDisplay: "Rs.1,550", image: productSerum },
   2: { name: "Hair Healer Oil", price: 750, priceDisplay: "Rs.750", image: productHairOil },
   3: { name: "Herbal Shampoo", price: 750, priceDisplay: "Rs.750", image: productShampoo },
-  4: { name: "Herbal Soap", price: 650, priceDisplay: "Rs.650", image: productSoap },
+  4: { name: "Herbal Soap", price: 1200, priceDisplay: "Rs.1,200", image: productSoap },
   5: { name: "Velvet Ritual Conditioner", price: 850, priceDisplay: "Rs.850", image: productConditioner },
   6: { name: "All-in-One Serum", price: 1500, priceDisplay: "Rs.1,500", image: productNew1 },
   7: { name: "Eco-Xent Cleaning Soap", price: 700, priceDisplay: "Rs.700", image: productNew2 },
@@ -166,7 +166,7 @@ const Index = () => {
         <FAQSection />
         <FinalCTA />
         <FooterSection />
-        <WhatsAppButton />
+        {/* WhatsApp button removed */}
         <AIChatbot />
         <MobileStickyBar />
       </Suspense>
