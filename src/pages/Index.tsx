@@ -7,22 +7,22 @@ import CartDrawer, { CartItem } from "@/components/CartDrawer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import MobileStickyBar from "@/components/MobileStickyBar";
 import CheckoutModal from "@/components/CheckoutModal";
+import TrustSection from "@/components/TrustSection";
+import MarqueeStrip from "@/components/MarqueeStrip";
+import ProductsSection from "@/components/ProductsSection";
+import BestSellerSection from "@/components/BestSellerSection";
+import ReviewsSection from "@/components/ReviewsSection";
+import StatsBar from "@/components/StatsBar";
+import AboutSection from "@/components/AboutSection";
+import FAQSection from "@/components/FAQSection";
+import FooterSection from "@/components/FooterSection";
 
-// Lazy load below-the-fold sections for faster initial load
-const TrustSection = lazy(() => import("@/components/TrustSection"));
-const MarqueeStrip = lazy(() => import("@/components/MarqueeStrip"));
+// Lazy load non-critical sections
 const SolutionSection = lazy(() => import("@/components/SolutionSection"));
 const RamzanBanner = lazy(() => import("@/components/RamzanBanner"));
 const ProductShowcase = lazy(() => import("@/components/ProductShowcase"));
-const StatsBar = lazy(() => import("@/components/StatsBar"));
-const ProductsSection = lazy(() => import("@/components/ProductsSection"));
-const BestSellerSection = lazy(() => import("@/components/BestSellerSection"));
-const ReviewsSection = lazy(() => import("@/components/ReviewsSection"));
 const ExperienceSection = lazy(() => import("@/components/ExperienceSection"));
-const AboutSection = lazy(() => import("@/components/AboutSection"));
-const FAQSection = lazy(() => import("@/components/FAQSection"));
 const FinalCTA = lazy(() => import("@/components/FinalCTA"));
-const FooterSection = lazy(() => import("@/components/FooterSection"));
 const AIChatbot = lazy(() => import("@/components/AIChatbot"));
 import { toast } from "sonner";
 
@@ -151,25 +151,30 @@ const Index = () => {
       <AnnouncementBar />
       <Navbar cartCount={cartCount} onCartClick={() => setCartOpen(true)} />
       <HeroSection />
-      <Suspense fallback={<div className="h-20" />}>
-        <TrustSection />
-        <MarqueeStrip />
+      <TrustSection />
+      <MarqueeStrip />
+      <Suspense fallback={null}>
         <RamzanBanner />
-        <ProductsSection onAddToCart={handleAddToCart} />
-        <BestSellerSection />
-        <ReviewsSection />
-        <StatsBar />
+      </Suspense>
+      <ProductsSection onAddToCart={handleAddToCart} />
+      <BestSellerSection />
+      <ReviewsSection />
+      <StatsBar />
+      <Suspense fallback={null}>
         <SolutionSection />
         <ProductShowcase />
         <ExperienceSection />
-        <AboutSection />
-        <FAQSection />
-        <FinalCTA />
-        <FooterSection />
-        {/* WhatsApp button removed */}
-        <AIChatbot />
-        <MobileStickyBar />
       </Suspense>
+      <AboutSection />
+      <FAQSection />
+      <Suspense fallback={null}>
+        <FinalCTA />
+      </Suspense>
+      <FooterSection />
+      <Suspense fallback={null}>
+        <AIChatbot />
+      </Suspense>
+      <MobileStickyBar />
       <CartDrawer
         isOpen={cartOpen}
         onClose={() => setCartOpen(false)}
