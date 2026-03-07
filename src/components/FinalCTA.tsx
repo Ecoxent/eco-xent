@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { ArrowRight } from "lucide-react";
+
 
 const FinalCTA = () => {
   const ref = useRef(null);
@@ -58,34 +58,6 @@ const FinalCTA = () => {
             Your transformation starts here.
           </motion.p>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.8 }}
-            className="flex flex-wrap justify-center gap-4"
-          >
-            <motion.a
-              href="#products"
-              className="inline-flex items-center gap-3 px-10 py-4 rounded-full font-body font-medium text-sm tracking-widest uppercase text-white"
-              style={{
-                background: "linear-gradient(135deg, hsl(var(--gold)), hsl(var(--gold-dark)))",
-                boxShadow: "0 4px 24px hsl(var(--gold) / 0.3)",
-              }}
-              whileHover={{ scale: 1.03, boxShadow: "0 8px 40px hsl(var(--gold) / 0.5)" }}
-              whileTap={{ scale: 0.97 }}
-            >
-              Shop Now
-              <ArrowRight className="w-4 h-4" />
-            </motion.a>
-            <motion.a
-              href="#contact"
-              className="inline-flex items-center gap-3 px-10 py-4 rounded-full border border-white/15 text-white/60 font-body font-medium text-sm tracking-widest uppercase hover:text-white hover:border-white/30 transition-all"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-            >
-              Contact Us
-            </motion.a>
-          </motion.div>
         </div>
       </motion.div>
     </section>
