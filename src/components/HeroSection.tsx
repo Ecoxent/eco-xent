@@ -2,12 +2,12 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useCallback } from "react";
 import { ArrowRight, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
 
-import heroBanner1 from "@/assets/hero-banner-serum-new.jpg";
-import heroBanner2 from "@/assets/hero-banner-hairoil-new.jpg";
-import heroBanner3 from "@/assets/hero-banner-shampoo-new.jpg";
-import heroBanner4 from "@/assets/hero-banner-soap-new.jpg";
-import heroBanner5 from "@/assets/hero-banner-conditioner-new.jpg";
-import heroBanner6 from "@/assets/hero-banner-hair-serum-new.jpg";
+import heroBanner1 from "@/assets/product-serum-with-ingredients.jpg";
+import heroBanner2 from "@/assets/product-hairoil-with-ingredients.jpg";
+import heroBanner3 from "@/assets/product-shampoo-with-ingredients.jpg";
+import heroBanner4 from "@/assets/product-cleaning-soap-updated.jpg";
+import heroBanner5 from "@/assets/product-conditioner-with-ingredients.jpg";
+import heroBanner6 from "@/assets/product-hair-serum-new.jpg";
 
 // Preload first banner for instant hero render
 if (typeof window !== "undefined") {
