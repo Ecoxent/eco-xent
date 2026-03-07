@@ -23,7 +23,7 @@ const WhatsAppButton = forwardRef<HTMLDivElement>((_props, ref) => {
       <AnimatePresence>
         {visible && (
           <motion.div
-            className="fixed bottom-6 right-6 z-50 md:bottom-6 bottom-20"
+            className="fixed bottom-[104px] right-6 z-50 max-sm:bottom-[88px] max-sm:right-4"
             initial={{ opacity: 0, scale: 0.5, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.5, y: 20 }}
