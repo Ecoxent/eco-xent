@@ -110,7 +110,7 @@ const Index = () => {
             "@type": "Organization",
             name: "Eco-Xent",
             url: "https://eco-xent.lovable.app",
-            logo: "https://eco-xent.lovable.app/favicon.ico",
+            logo: "https://eco-xent.lovable.app/favicon.png",
             contactPoint: {
               "@type": "ContactPoint",
               telephone: "+92-329-5991062",
