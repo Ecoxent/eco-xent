@@ -1,6 +1,6 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
-import { ArrowRight, Star, Shield, Leaf } from "lucide-react";
+import { Star, Shield, Leaf } from "lucide-react";
 import productSerum from "@/assets/product-serum-with-ingredients.jpg";
 
 const BestSellerSection = () => {
