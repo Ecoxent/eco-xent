@@ -1,6 +1,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { Link } from "react-router-dom";
 import logoImg from "@/assets/ecoxent-logo-new.jpeg";
 
 const FacebookIcon = () => (
