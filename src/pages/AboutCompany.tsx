@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Leaf, Shield, Award, Heart, CheckCircle, ArrowLeft, Eye, Target, Sparkles, Users } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { useEffect } from "react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
