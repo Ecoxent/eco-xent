@@ -1,3 +1,14 @@
+import blogHairGrowthOils from "@/assets/blog-hair-growth-oils.jpg";
+import blogStopHairFall from "@/assets/blog-stop-hair-fall.jpg";
+import blogNeemBenefits from "@/assets/blog-neem-benefits.jpg";
+import blogHerbalSoap from "@/assets/blog-herbal-soap.jpg";
+import blogSkincareRoutine from "@/assets/blog-skincare-routine.jpg";
+import blogHairIngredients from "@/assets/blog-hair-ingredients.jpg";
+import blogHerbalVsChemical from "@/assets/blog-herbal-vs-chemical.jpg";
+import blogGlowingSkin from "@/assets/blog-glowing-skin.jpg";
+import blogMenHairCare from "@/assets/blog-men-hair-care.jpg";
+import blogWomenHairCare from "@/assets/blog-women-hair-care.jpg";
+
 export interface BlogPost {
   slug: string;
   title: string;
