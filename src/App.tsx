@@ -7,6 +7,8 @@ import { lazy, Suspense } from "react";
 import Index from "./pages/Index";
 
 const Admin = lazy(() => import("./pages/Admin"));
+const Blog = lazy(() => import("./pages/Blog"));
+const BlogPost = lazy(() => import("./pages/BlogPost"));
 const TrackOrder = lazy(() => import("./pages/TrackOrder"));
 const AboutCeo = lazy(() => import("./pages/AboutCeo"));
 const AboutCompany = lazy(() => import("./pages/AboutCompany"));
