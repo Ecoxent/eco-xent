@@ -2,12 +2,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useCallback } from "react";
 import { ArrowRight, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
 
-import heroBanner1 from "@/assets/product-serum-with-ingredients.jpg";
-import heroBanner2 from "@/assets/product-hairoil-with-ingredients.jpg";
-import heroBanner3 from "@/assets/product-shampoo-with-ingredients.jpg";
-import heroBanner4 from "@/assets/product-cleaning-soap-updated.jpg";
-import heroBanner5 from "@/assets/product-conditioner-with-ingredients.jpg";
-import heroBanner6 from "@/assets/product-hair-serum-new.jpg";
+import heroBanner1 from "@/assets/banner-botanic-shield-serum.jpg";
+import heroBanner2 from "@/assets/banner-hair-healer-oil.jpg";
+import heroBanner3 from "@/assets/banner-herbal-shampoo.jpg";
+import heroBanner4 from "@/assets/banner-cleansing-soap.jpg";
+import heroBanner5 from "@/assets/banner-velvet-conditioner.jpg";
+import heroBanner6 from "@/assets/banner-hair-living-serum.jpg";
+import heroBanner7 from "@/assets/banner-all-in-one-serum.jpg";
+import heroBanner8 from "@/assets/banner-herbal-soap.jpg";
 
 // Preload first banner for instant hero render
 if (typeof window !== "undefined") {
@@ -19,7 +21,7 @@ if (typeof window !== "undefined") {
   document.head.appendChild(preloadLink);
 
   window.addEventListener("load", () => {
-    [heroBanner2, heroBanner3, heroBanner4, heroBanner5, heroBanner6].forEach((src) => {
+    [heroBanner2, heroBanner3, heroBanner4, heroBanner5, heroBanner6, heroBanner7, heroBanner8].forEach((src) => {
       const img = new Image();
       img.src = src;
     });
@@ -62,6 +64,18 @@ const slides = [
     overline: "Hair Living Serum",
     headline: ["Shine & Repair.", "Naturally."],
     description: "Advanced herbal hair serum with Argan Oil, Marula Oil, Camellia Oil & Murumuru Butter to nourish, control frizz and add natural shine.",
+  },
+  {
+    image: heroBanner7,
+    overline: "All-in-One Serum",
+    headline: ["Complete Care.", "One Bottle."],
+    description: "Multi-action herbal face serum with Chamomile, Aloe Vera & Tea Tree for complete skincare in one powerful formula.",
+  },
+  {
+    image: heroBanner8,
+    overline: "Herbal Soap",
+    headline: ["Pure Herbs.", "Gentle Clean."],
+    description: "Handcrafted luxury herbal soap with Turmeric, Sandalwood & Rose for naturally soft, glowing skin.",
   },
 ];
 
