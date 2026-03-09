@@ -117,7 +117,7 @@ const HeroSection = () => {
             <img
               src={s.image}
               alt={s.overline}
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-cover object-[70%_center] sm:object-[60%_center] md:object-center"
               style={{ filter: "brightness(0.82) saturate(1.1)" }}
               loading="eager"
               decoding="async"
