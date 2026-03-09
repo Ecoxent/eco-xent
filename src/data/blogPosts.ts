@@ -446,7 +446,7 @@ Experience the power of neem with [Eco-Xent's range of neem-infused herbal produ
     tags: ["herbal soap", "natural soap", "skin care", "organic products"],
     author: "Eco-Xent Team",
     publishDate: "2026-03-01",
-    featuredImage: "/placeholder.svg",
+    featuredImage: blogHerbalSoap,
     featuredImageAlt: "Eco-Xent herbal soap bars with natural ingredients for healthy glowing skin",
     excerpt: "Chemical soaps damage your skin. Discover why herbal soaps are better and how to choose the best natural soap for your skin type.",
     content: `
