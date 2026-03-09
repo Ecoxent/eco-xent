@@ -41,7 +41,7 @@ export const blogPosts: BlogPost[] = [
     tags: ["hair growth", "natural oils", "hair care", "herbal hair oil"],
     author: "Eco-Xent Team",
     publishDate: "2026-02-15",
-    featuredImage: "/placeholder.svg",
+    featuredImage: blogHairGrowthOils,
     featuredImageAlt: "Natural hair growth oils including coconut, castor and herbal blends for healthy hair",
     excerpt: "Looking for the best natural hair growth oils? Learn about coconut oil, castor oil, argan oil and herbal blends that promote thicker, healthier hair naturally.",
     content: `
