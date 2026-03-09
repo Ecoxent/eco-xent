@@ -8,12 +8,12 @@ const BestSellerSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative py-28 overflow-hidden bg-white">
+    <section className="relative py-16 sm:py-20 md:py-28 overflow-hidden bg-white">
       {/* Subtle gold radial */}
       <div className="absolute inset-0 gradient-radial-gold opacity-30" />
 
-      <div ref={ref} className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+      <div ref={ref} className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
           {/* Left — Product Image with glow */}
           <motion.div
             className="relative flex items-center justify-center"
