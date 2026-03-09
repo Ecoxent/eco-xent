@@ -167,7 +167,7 @@ Start your natural hair care journey today with [Eco-Xent's range of 100% organi
     tags: ["hair fall", "home remedies", "natural treatment", "hair care tips"],
     author: "Eco-Xent Team",
     publishDate: "2026-02-20",
-    featuredImage: "/placeholder.svg",
+    featuredImage: blogStopHairFall,
     featuredImageAlt: "Woman showing healthy thick hair after using natural hair fall remedies",
     excerpt: "Struggling with hair fall? Discover 15 proven natural remedies and lifestyle changes that can help you stop hair loss and regrow thicker, healthier hair.",
     content: `
