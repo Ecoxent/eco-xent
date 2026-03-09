@@ -593,7 +593,7 @@ Experience the difference with [Eco-Xent's herbal soaps](/) — handcrafted with
     tags: ["skincare routine", "natural skincare", "home remedies", "skin care tips"],
     author: "Eco-Xent Team",
     publishDate: "2026-03-02",
-    featuredImage: "/placeholder.svg",
+    featuredImage: blogSkincareRoutine,
     featuredImageAlt: "Natural skincare routine products and ingredients arranged on a clean surface",
     excerpt: "Build a complete natural skincare routine at home with our step-by-step guide. Learn which organic ingredients work best for your skin type.",
     content: `
