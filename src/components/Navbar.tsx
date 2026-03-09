@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import logoImg from "@/assets/ecoxent-logo-new.jpeg";
 
 const navItems = [
-  { label: "Home", href: "#hero" },
+  { label: "Home", href: "#top" },
   { label: "Collection", href: "#products" },
   { label: "About", href: "/about", isPage: true },
   { label: "Blog", href: "/blog", isPage: true },
