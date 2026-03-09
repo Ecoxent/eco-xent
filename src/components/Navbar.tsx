@@ -32,10 +32,16 @@ const Navbar = ({ cartCount, onCartClick }: { cartCount: number; onCartClick: ()
   useEffect(() => {
     if (location.pathname !== "/") return;
 
-    const sectionIds = navItems.filter(i => !i.isPage).map(i => i.href);
+    const sectionIds = navItems.filter(i => !i.isPage && i.href !== "#top").map(i => i.href);
 
     const handleScroll = () => {
       const scrollPos = window.scrollY + window.innerHeight * 0.35;
+
+      // If near top, set Home active
+      if (window.scrollY < 200) {
+        setActiveSection("#top");
+        return;
+      }
 
       // Check from bottom to top to find the last section that has been scrolled past
       for (let i = sectionIds.length - 1; i >= 0; i--) {
@@ -45,8 +51,7 @@ const Navbar = ({ cartCount, onCartClick }: { cartCount: number; onCartClick: ()
           return;
         }
       }
-      // Default to first
-      setActiveSection(sectionIds[0]);
+      setActiveSection("#top");
     };
 
     handleScroll(); // initial check
