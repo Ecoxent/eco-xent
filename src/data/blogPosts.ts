@@ -1120,7 +1120,7 @@ Make the switch to [Eco-Xent Herbal Shampoo](/) today and experience the differe
     tags: ["glowing skin", "natural beauty", "skin care tips", "home remedies"],
     author: "Eco-Xent Team",
     publishDate: "2026-03-05",
-    featuredImage: "/placeholder.svg",
+    featuredImage: blogGlowingSkin,
     featuredImageAlt: "Woman with naturally glowing healthy skin using organic skincare products",
     excerpt: "Want naturally glowing skin? Here are 20 proven tips covering diet, skincare routine, and lifestyle habits that actually work for radiant skin.",
     content: `
