@@ -787,7 +787,7 @@ Start simple, be consistent, and listen to your skin. The results will speak for
     tags: ["hair growth ingredients", "natural ingredients", "hair care", "herbal remedies"],
     author: "Eco-Xent Team",
     publishDate: "2026-03-03",
-    featuredImage: "/placeholder.svg",
+    featuredImage: blogHairIngredients,
     featuredImageAlt: "Natural hair growth ingredients including amla, bhringraj, castor oil and herbs",
     excerpt: "Science-backed natural ingredients that promote hair growth. From biotin to bhringraj, learn what actually works and how Eco-Xent harnesses these ingredients.",
     content: `
