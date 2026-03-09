@@ -198,6 +198,7 @@ const Index = () => {
         <FinalCTA />
       </Suspense>
       <FooterSection />
+      <WhatsAppButton />
       <Suspense fallback={null}>
         <AIChatbot />
         <WhatsAppPopup />
