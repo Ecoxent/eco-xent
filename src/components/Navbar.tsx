@@ -212,6 +212,9 @@ const Navbar = ({ cartCount, onCartClick }: { cartCount: number; onCartClick: ()
                       setMenuOpen(false);
                       if (item.isPage) {
                         navigate(item.href);
+                      } else if (item.href === "#top") {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        history.replaceState(null, '', '/');
                       } else if (location.pathname !== "/") {
                         navigate("/" + item.href);
                       } else {
