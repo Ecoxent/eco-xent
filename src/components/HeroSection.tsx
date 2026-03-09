@@ -65,6 +65,18 @@ const slides = [
     headline: ["Shine & Repair.", "Naturally."],
     description: "Advanced herbal hair serum with Argan Oil, Marula Oil, Camellia Oil & Murumuru Butter to nourish, control frizz and add natural shine.",
   },
+  {
+    image: heroBanner7,
+    overline: "All-in-One Serum",
+    headline: ["Complete Care.", "One Bottle."],
+    description: "Multi-action herbal face serum with Chamomile, Aloe Vera & Tea Tree for complete skincare in one powerful formula.",
+  },
+  {
+    image: heroBanner8,
+    overline: "Herbal Soap",
+    headline: ["Pure Herbs.", "Gentle Clean."],
+    description: "Handcrafted luxury herbal soap with Turmeric, Sandalwood & Rose for naturally soft, glowing skin.",
+  },
 ];
 
 const textVariants = {
