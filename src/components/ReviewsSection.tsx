@@ -25,10 +25,10 @@ const ReviewsSection = () => {
   }, []);
 
   return (
-    <section id="reviews" className="relative py-28 overflow-hidden bg-white">
+    <section id="reviews" className="relative py-16 sm:py-20 md:py-28 overflow-hidden bg-white">
       <div className="absolute inset-0 gradient-radial-gold opacity-15" />
 
-      <div ref={ref} className="container mx-auto px-6 relative z-10">
+      <div ref={ref} className="container mx-auto px-4 sm:px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
