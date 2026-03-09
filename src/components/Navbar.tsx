@@ -5,7 +5,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import logoImg from "@/assets/ecoxent-logo-new.jpeg";
 
 const navItems = [
-  { label: "Home", href: "#hero" },
+  { label: "Home", href: "#top" },
   { label: "Collection", href: "#products" },
   { label: "About", href: "/about", isPage: true },
   { label: "Blog", href: "/blog", isPage: true },
@@ -21,7 +21,7 @@ const Navbar = ({ cartCount, onCartClick }: { cartCount: number; onCartClick: ()
   const [menuOpen, setMenuOpen] = useState(false);
   const { scrollY } = useScroll();
   const lastScrollY = useRef(0);
-  const [activeSection, setActiveSection] = useState("#hero");
+  const [activeSection, setActiveSection] = useState("#top");
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 20);
@@ -32,10 +32,16 @@ const Navbar = ({ cartCount, onCartClick }: { cartCount: number; onCartClick: ()
   useEffect(() => {
     if (location.pathname !== "/") return;
 
-    const sectionIds = navItems.filter(i => !i.isPage).map(i => i.href);
+    const sectionIds = navItems.filter(i => !i.isPage && i.href !== "#top").map(i => i.href);
 
     const handleScroll = () => {
       const scrollPos = window.scrollY + window.innerHeight * 0.35;
+
+      // If near top, set Home active
+      if (window.scrollY < 200) {
+        setActiveSection("#top");
+        return;
+      }
 
       // Check from bottom to top to find the last section that has been scrolled past
       for (let i = sectionIds.length - 1; i >= 0; i--) {
@@ -45,8 +51,7 @@ const Navbar = ({ cartCount, onCartClick }: { cartCount: number; onCartClick: ()
           return;
         }
       }
-      // Default to first
-      setActiveSection(sectionIds[0]);
+      setActiveSection("#top");
     };
 
     handleScroll(); // initial check
@@ -82,7 +87,8 @@ const Navbar = ({ cartCount, onCartClick }: { cartCount: number; onCartClick: ()
         <div className="flex items-center justify-between h-[68px]">
           {/* Logo */}
           <motion.a
-            href="#hero"
+            href="/"
+            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); history.replaceState(null, '', '/'); }}
             className="flex-shrink-0 relative group"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
@@ -107,6 +113,11 @@ const Navbar = ({ cartCount, onCartClick }: { cartCount: number; onCartClick: ()
                     if (item.isPage) {
                       e.preventDefault();
                       navigate(item.href);
+                    } else if (item.href === "#top") {
+                      e.preventDefault();
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                      history.replaceState(null, '', '/');
+                      setActiveSection(item.href);
                     } else if (location.pathname !== "/") {
                       e.preventDefault();
                       navigate("/" + item.href);
@@ -206,6 +217,9 @@ const Navbar = ({ cartCount, onCartClick }: { cartCount: number; onCartClick: ()
                       setMenuOpen(false);
                       if (item.isPage) {
                         navigate(item.href);
+                      } else if (item.href === "#top") {
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                        history.replaceState(null, '', '/');
                       } else if (location.pathname !== "/") {
                         navigate("/" + item.href);
                       } else {
