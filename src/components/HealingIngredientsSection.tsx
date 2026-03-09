@@ -57,7 +57,7 @@ const HealingIngredientsSection = () => {
   const isInView = useInView(ref, { once: false, margin: "-80px" });
 
   return (
-    <section id="ingredients" className="relative py-32 overflow-hidden">
+    <section id="ingredients" className="relative py-16 sm:py-24 md:py-32 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-background via-secondary/20 to-background" />
       <div className="absolute inset-0 gradient-radial-gold opacity-5" />
 
