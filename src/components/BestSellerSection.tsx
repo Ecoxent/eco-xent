@@ -8,12 +8,12 @@ const BestSellerSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative py-28 overflow-hidden bg-white">
+    <section className="relative py-16 sm:py-20 md:py-28 overflow-hidden bg-white">
       {/* Subtle gold radial */}
       <div className="absolute inset-0 gradient-radial-gold opacity-30" />
 
-      <div ref={ref} className="container mx-auto px-6 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-center max-w-6xl mx-auto">
+      <div ref={ref} className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-16 items-center max-w-6xl mx-auto">
           {/* Left — Product Image with glow */}
           <motion.div
             className="relative flex items-center justify-center"
@@ -65,18 +65,18 @@ const BestSellerSection = () => {
             <p className="text-[11px] font-body font-medium tracking-[0.4em] uppercase text-gold mb-4">
               ★ Best Seller
             </p>
-            <h2 className="text-4xl md:text-5xl font-heading font-semibold text-foreground mb-6 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-semibold text-foreground mb-4 sm:mb-6 leading-tight">
               Botanic Shield
               <span className="block text-gradient-gold">Serum</span>
             </h2>
-            <p className="text-muted-foreground font-body text-base leading-relaxed mb-8 max-w-lg">
+            <p className="text-muted-foreground font-body text-sm sm:text-base leading-relaxed mb-6 sm:mb-8 max-w-lg">
               Our most advanced formulation combines 15+ rare botanical extracts
               to create a protective shield for your skin. Clinically proven to
               reduce dark spots by 40% in just 4 weeks.
             </p>
 
             {/* Features */}
-            <div className="grid grid-cols-3 gap-4 mb-10">
+            <div className="grid grid-cols-3 gap-3 sm:gap-4 mb-8 sm:mb-10">
               {[
                 { icon: Leaf, label: "100% Organic" },
                 { icon: Shield, label: "Skin Shield" },
@@ -92,10 +92,10 @@ const BestSellerSection = () => {
             </div>
 
             {/* Price + CTA */}
-            <div className="flex items-center gap-6 mb-8">
+            <div className="flex flex-wrap items-center gap-4 sm:gap-6 mb-6 sm:mb-8">
               <div>
-                <span className="text-3xl font-heading font-bold text-foreground">Rs.1,550</span>
-                <span className="text-lg font-body text-muted-foreground line-through ml-3">Rs.1,999</span>
+                <span className="text-2xl sm:text-3xl font-heading font-bold text-foreground">Rs.1,550</span>
+                <span className="text-base sm:text-lg font-body text-muted-foreground line-through ml-2 sm:ml-3">Rs.1,999</span>
               </div>
               <span className="px-3 py-1 rounded-md text-xs font-body font-semibold text-white bg-forest">
                 Save 22%

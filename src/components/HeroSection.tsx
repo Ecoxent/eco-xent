@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect, useCallback } from "react";
-import { ArrowRight, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
+import { Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
 
 import heroBanner1 from "@/assets/banner-botanic-shield-serum.jpg";
 import heroBanner2 from "@/assets/banner-hair-healer-oil.jpg";
@@ -33,60 +33,52 @@ const slides = [
     image: heroBanner1,
     overline: "Botanic Shield Serum",
     headline: ["Pure Nature.", "Powerful Results."],
-    description: "Advanced herbal defense & restoration serum with Hyaluronic Acid, Vitamin C & Rosehip Oil for radiant, youthful skin.",
   },
   {
     image: heroBanner2,
     overline: "Hair Healer Oil",
     headline: ["Heal Hair.", "Grow Strong."],
-    description: "Powerful herbal hair oil with 27 essential herbs including Coconut, Castor, Black Seed & Amla oils to reduce hair fall and promote healthy growth.",
   },
   {
     image: heroBanner3,
     overline: "Herbal Shampoo",
     headline: ["Nourish.", "Transform."],
-    description: "Sulfate-free herbal shampoo infused with amla, neem & shikakai for soft, nourished and healthy hair.",
   },
   {
     image: heroBanner4,
     overline: "Eco-Xent Cleansing Soap",
     headline: ["Cleanse.", "Rejuvenate."],
-    description: "Luxurious herbal cleansing soap with Neem, Amla, Tea Tree & Frankincense for naturally clear skin.",
   },
   {
     image: heroBanner5,
     overline: "Velvet Ritual Conditioner",
     headline: ["Silky Smooth.", "Every Wash."],
-    description: "Advanced herbal conditioner that deeply hydrates, enhances shine and provides daily shield protection for silky, healthy hair.",
   },
   {
     image: heroBanner6,
     overline: "Hair Living Serum",
     headline: ["Shine & Repair.", "Naturally."],
-    description: "Advanced herbal hair serum with Argan Oil, Marula Oil, Camellia Oil & Murumuru Butter to nourish, control frizz and add natural shine.",
   },
   {
     image: heroBanner7,
     overline: "All-in-One Serum",
     headline: ["Complete Care.", "One Bottle."],
-    description: "Multi-action herbal face serum with Chamomile, Aloe Vera & Tea Tree for complete skincare in one powerful formula.",
   },
   {
     image: heroBanner8,
     overline: "Herbal Soap",
     headline: ["Pure Herbs.", "Gentle Clean."],
-    description: "Handcrafted luxury herbal soap with Turmeric, Sandalwood & Rose for naturally soft, glowing skin.",
   },
 ];
 
 const textVariants = {
-  enter: { opacity: 0, y: 40, filter: "blur(8px)" },
+  enter: { opacity: 0, y: 30, filter: "blur(6px)" },
   center: { opacity: 1, y: 0, filter: "blur(0px)" },
-  exit: { opacity: 0, y: -30, filter: "blur(6px)" },
+  exit: { opacity: 0, y: -20, filter: "blur(4px)" },
 };
 
 const stagger = {
-  center: { transition: { staggerChildren: 0.1, delayChildren: 0.2 } },
+  center: { transition: { staggerChildren: 0.1, delayChildren: 0.15 } },
 };
 
 const HeroSection = () => {
@@ -113,58 +105,61 @@ const HeroSection = () => {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative w-full" style={{ minHeight: "100vh", paddingTop: "68px" }}>
-        {/* Background images with Ken Burns effect */}
+      {/* Responsive height: mobile shorter, desktop full viewport */}
+      <div className="relative w-full min-h-[85vh] sm:min-h-[90vh] md:min-h-screen" style={{ paddingTop: "68px" }}>
+        {/* Full-bleed background banners */}
         {slides.map((s, i) => (
           <div
             key={i}
             className="absolute inset-0 transition-opacity duration-[1200ms] ease-in-out"
             style={{ opacity: i === current ? 1 : 0, zIndex: i === current ? 1 : 0 }}
           >
+            <img
+              src={s.image}
+              alt={s.overline}
+              className="absolute inset-0 w-full h-full object-cover"
+              style={{ filter: "brightness(0.82) saturate(1.1)" }}
+              loading="eager"
+              decoding="async"
+              fetchPriority={i === 0 ? "high" : "auto"}
+            />
+            {/* Left gradient for text readability */}
             <div
               className="absolute inset-0"
-              style={{ background: "linear-gradient(135deg, hsl(90 35% 8%), hsl(90 30% 14%), hsl(90 35% 8%))" }}
+              style={{ background: "linear-gradient(to right, hsl(90 30% 6% / 0.85) 0%, hsl(90 30% 6% / 0.6) 35%, hsl(90 30% 6% / 0.2) 60%, transparent 100%)" }}
             />
-            <div className="w-full h-full flex items-center justify-end">
-              <img
-                src={s.image}
-                alt={s.overline}
-                className="h-full max-h-[85vh] w-auto object-contain mr-[5%] md:mr-[10%] drop-shadow-2xl"
-                style={{ filter: "brightness(0.85) saturate(1.15)" }}
-                loading="eager"
-                decoding="async"
-                fetchPriority={i === 0 ? "high" : "auto"}
-              />
-            </div>
-            {/* Premium overlays */}
-            <div className="absolute inset-0" style={{ background: "linear-gradient(to right, hsl(90 30% 8% / 0.7) 0%, hsl(90 30% 8% / 0.4) 50%, hsl(90 30% 8% / 0.15) 100%)" }} />
-            <div className="absolute inset-0 md:hidden" style={{ background: "linear-gradient(to bottom, hsl(90 30% 8% / 0.5) 0%, transparent 30%, transparent 50%, hsl(90 30% 8% / 0.6) 100%)" }} />
-            <div className="absolute inset-0 hidden md:block" style={{ background: "linear-gradient(180deg, hsl(90 30% 8% / 0.3) 0%, transparent 40%, transparent 60%, hsl(90 30% 8% / 0.5) 100%)" }} />
-            <div className="absolute inset-0 hidden md:block" style={{ background: "radial-gradient(ellipse 60% 60% at 25% 50%, hsl(45 40% 50% / 0.04) 0%, transparent 70%)" }} />
+            {/* Mobile: stronger overlay for text */}
+            <div
+              className="absolute inset-0 md:hidden"
+              style={{ background: "linear-gradient(to bottom, hsl(90 30% 6% / 0.6) 0%, hsl(90 30% 6% / 0.3) 40%, hsl(90 30% 6% / 0.5) 100%)" }}
+            />
+            {/* Top/bottom vignette */}
+            <div
+              className="absolute inset-0"
+              style={{ background: "linear-gradient(180deg, hsl(90 30% 6% / 0.4) 0%, transparent 25%, transparent 75%, hsl(90 30% 6% / 0.5) 100%)" }}
+            />
           </div>
         ))}
 
-        {/* Decorative elements */}
+        {/* Decorative line */}
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent z-10" />
-        <div className="absolute top-20 right-[10%] w-px h-32 bg-gradient-to-b from-gold/20 to-transparent z-10 hidden lg:block" />
-        <div className="absolute bottom-32 left-[8%] w-px h-24 bg-gradient-to-t from-gold/15 to-transparent z-10 hidden lg:block" />
 
-        {/* Slide counter - top right */}
-        <div className="absolute top-8 right-6 md:right-10 z-20 hidden md:flex items-center gap-3">
-          <span className="text-white/30 font-heading text-5xl font-light tabular-nums">
+        {/* Slide counter - top right (desktop only) */}
+        <div className="absolute top-6 right-6 md:top-8 md:right-10 z-20 hidden md:flex items-center gap-3">
+          <span className="text-white/25 font-heading text-4xl lg:text-5xl font-light tabular-nums">
             {String(current + 1).padStart(2, "0")}
           </span>
           <div className="flex flex-col items-center gap-1">
-            <div className="w-px h-6 bg-gold/40" />
-            <span className="text-white/20 font-body text-xs tabular-nums">
+            <div className="w-px h-5 bg-gold/30" />
+            <span className="text-white/15 font-body text-xs tabular-nums">
               {String(slides.length).padStart(2, "0")}
             </span>
           </div>
         </div>
 
         {/* Main content */}
-        <div className="relative z-10 container mx-auto px-5 sm:px-6 md:px-10 lg:px-16 flex flex-col justify-center" style={{ minHeight: "calc(100vh - 68px)" }}>
-          <div className="max-w-[65%] sm:max-w-[60%] md:max-w-3xl py-20">
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 md:px-10 lg:px-16 flex flex-col justify-center min-h-[calc(85vh-68px)] sm:min-h-[calc(90vh-68px)] md:min-h-[calc(100vh-68px)]">
+          <div className="max-w-[85%] sm:max-w-[70%] md:max-w-2xl lg:max-w-3xl py-12 sm:py-16 md:py-20">
             <AnimatePresence mode="wait">
               <motion.div
                 key={current}
@@ -176,14 +171,14 @@ const HeroSection = () => {
                 {/* Overline badge */}
                 <motion.div
                   variants={textVariants}
-                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                  className="mb-8"
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  className="mb-5 sm:mb-6 md:mb-8"
                 >
-                  <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-gold/20 backdrop-blur-md"
-                    style={{ background: "linear-gradient(135deg, hsl(45 50% 50% / 0.08), hsl(45 50% 50% / 0.03))" }}
+                  <div className="inline-flex items-center gap-2 sm:gap-3 px-3 sm:px-4 md:px-5 py-2 sm:py-2.5 rounded-full border border-gold/20 backdrop-blur-md"
+                    style={{ background: "linear-gradient(135deg, hsl(45 50% 50% / 0.1), hsl(45 50% 50% / 0.03))" }}
                   >
-                    <Sparkles className="w-3.5 h-3.5 text-gold" />
-                    <span className="text-gold-light text-[11px] font-body font-semibold tracking-[0.35em] uppercase">
+                    <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-gold" />
+                    <span className="text-gold-light text-[10px] sm:text-[11px] font-body font-semibold tracking-[0.25em] sm:tracking-[0.35em] uppercase">
                       {slide.overline}
                     </span>
                   </div>
@@ -194,14 +189,14 @@ const HeroSection = () => {
                   <motion.div
                     key={line}
                     variants={textVariants}
-                    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                    className="overflow-hidden mb-1"
+                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    className="overflow-hidden mb-0.5 sm:mb-1"
                   >
                     <h1
-                      className={`text-[clamp(2.8rem,8vw,6.5rem)] font-heading leading-[0.92] tracking-tight ${
+                      className={`text-[clamp(2rem,7vw,6rem)] font-heading leading-[0.92] tracking-tight ${
                         i === 0 ? "font-extralight text-white" : "font-normal"
                       }`}
-                      style={i === 1 ? { 
+                      style={i === 1 ? {
                         background: "linear-gradient(135deg, hsl(45 55% 62%), hsl(45 45% 48%), hsl(45 55% 58%))",
                         WebkitBackgroundClip: "text",
                         WebkitTextFillColor: "transparent",
@@ -213,20 +208,19 @@ const HeroSection = () => {
                   </motion.div>
                 ))}
 
-
                 {/* Trust badges */}
                 <motion.div
                   variants={textVariants}
-                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                  className="flex items-center gap-6 md:gap-8"
+                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                  className="flex items-center gap-4 sm:gap-6 md:gap-8 mt-4 sm:mt-6"
                 >
                   {["100% Organic", "Cruelty Free", "Handcrafted"].map((text, i) => (
-                    <div key={text} className="flex items-center gap-2.5">
+                    <div key={text} className="flex items-center gap-1.5 sm:gap-2.5">
                       <div
-                        className="w-1.5 h-1.5 rounded-full"
+                        className="w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full"
                         style={{ background: `hsl(${45 + i * 5} ${50 - i * 5}% ${50 + i * 5}%)` }}
                       />
-                      <span className="text-white/35 text-[10px] md:text-[11px] font-body font-medium tracking-[0.25em] uppercase">
+                      <span className="text-white/30 text-[8px] sm:text-[10px] md:text-[11px] font-body font-medium tracking-[0.15em] sm:tracking-[0.25em] uppercase">
                         {text}
                       </span>
                     </div>
@@ -237,23 +231,22 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Vertical navigation - right side */}
-        <div className="absolute right-6 md:right-10 top-1/2 -translate-y-1/2 z-20 hidden md:flex flex-col items-center gap-4">
+        {/* Vertical navigation - right side (desktop) */}
+        <div className="absolute right-4 md:right-8 lg:right-10 top-1/2 -translate-y-1/2 z-20 hidden md:flex flex-col items-center gap-3">
           <button
             onClick={prev}
-            className="w-10 h-10 rounded-full border border-white/10 bg-white/5 backdrop-blur-md flex items-center justify-center text-white/40 hover:text-white hover:border-gold/30 hover:bg-white/10 transition-all duration-400"
+            className="w-9 h-9 lg:w-10 lg:h-10 rounded-full border border-white/10 bg-white/5 backdrop-blur-md flex items-center justify-center text-white/40 hover:text-white hover:border-gold/30 hover:bg-white/10 transition-all duration-300"
           >
             <ChevronLeft className="w-4 h-4 rotate-90" />
           </button>
 
-          {/* Vertical dots */}
-          <div className="flex flex-col gap-2.5 py-3">
+          <div className="flex flex-col gap-2 py-2">
             {slides.map((_, i) => (
               <button
                 key={i}
                 onClick={() => goTo(i)}
                 className="relative w-2 rounded-full overflow-hidden transition-all duration-500"
-                style={{ height: current === i ? 28 : 8 }}
+                style={{ height: current === i ? 24 : 7 }}
               >
                 <div className="absolute inset-0 bg-white/15 rounded-full" />
                 {current === i && (
@@ -271,27 +264,27 @@ const HeroSection = () => {
 
           <button
             onClick={next}
-            className="w-10 h-10 rounded-full border border-white/10 bg-white/5 backdrop-blur-md flex items-center justify-center text-white/40 hover:text-white hover:border-gold/30 hover:bg-white/10 transition-all duration-400"
+            className="w-9 h-9 lg:w-10 lg:h-10 rounded-full border border-white/10 bg-white/5 backdrop-blur-md flex items-center justify-center text-white/40 hover:text-white hover:border-gold/30 hover:bg-white/10 transition-all duration-300"
           >
             <ChevronRight className="w-4 h-4 rotate-90" />
           </button>
         </div>
 
         {/* Mobile bottom navigation */}
-        <div className="absolute bottom-8 left-0 right-0 z-20 flex md:hidden items-center justify-center gap-3">
+        <div className="absolute bottom-6 sm:bottom-8 left-0 right-0 z-20 flex md:hidden items-center justify-center gap-2.5 sm:gap-3">
           <button
             onClick={prev}
-            className="w-9 h-9 rounded-full border border-white/15 bg-white/5 backdrop-blur-md flex items-center justify-center text-white/50"
+            className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-white/15 bg-white/5 backdrop-blur-md flex items-center justify-center text-white/50 active:bg-white/15 transition-colors"
           >
-            <ChevronLeft className="w-3.5 h-3.5" />
+            <ChevronLeft className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
           </button>
-          <div className="flex gap-2">
+          <div className="flex gap-1.5 sm:gap-2">
             {slides.map((_, i) => (
               <button
                 key={i}
                 onClick={() => goTo(i)}
-                className="relative h-1.5 rounded-full overflow-hidden transition-all duration-500"
-                style={{ width: current === i ? 28 : 10 }}
+                className="relative h-1 sm:h-1.5 rounded-full overflow-hidden transition-all duration-500"
+                style={{ width: current === i ? 22 : 8 }}
               >
                 <div className="absolute inset-0 bg-white/20 rounded-full" />
                 {current === i && (
@@ -307,14 +300,14 @@ const HeroSection = () => {
           </div>
           <button
             onClick={next}
-            className="w-9 h-9 rounded-full border border-white/15 bg-white/5 backdrop-blur-md flex items-center justify-center text-white/50"
+            className="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-white/15 bg-white/5 backdrop-blur-md flex items-center justify-center text-white/50 active:bg-white/15 transition-colors"
           >
-            <ChevronRight className="w-3.5 h-3.5" />
+            <ChevronRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
           </button>
         </div>
 
-        {/* Bottom gradient — matches dark hero, no white bleed */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 z-10 pointer-events-none" style={{ background: "linear-gradient(to top, hsl(90 35% 8%), hsl(90 35% 8% / 0.5), transparent)" }} />
+        {/* Bottom gradient */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 sm:h-32 z-10 pointer-events-none" style={{ background: "linear-gradient(to top, hsl(90 35% 8%), hsl(90 35% 8% / 0.5), transparent)" }} />
       </div>
     </section>
   );

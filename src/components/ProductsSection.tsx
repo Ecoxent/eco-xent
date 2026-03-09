@@ -225,8 +225,8 @@ const ProductsSection = ({ onAddToCart }: { onAddToCart: (id: number) => void })
 
   return (
     <>
-      <section id="products" className="relative py-24 overflow-hidden bg-background">
-        <div className="container mx-auto px-6 relative z-10">
+      <section id="products" className="relative py-16 sm:py-20 md:py-24 overflow-hidden bg-background">
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
           {/* Section heading */}
           <motion.div
             ref={headingRef}
@@ -269,7 +269,7 @@ const ProductsSection = ({ onAddToCart }: { onAddToCart: (id: number) => void })
           </motion.div>
 
           {/* Product grid */}
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-6 max-w-7xl mx-auto">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-5 md:gap-6 max-w-7xl mx-auto">
             <AnimatePresence mode="popLayout">
               {filteredProducts.map((product, i) => (
                 <ProductCard

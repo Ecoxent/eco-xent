@@ -25,10 +25,10 @@ const ReviewsSection = () => {
   }, []);
 
   return (
-    <section id="reviews" className="relative py-28 overflow-hidden bg-white">
+    <section id="reviews" className="relative py-16 sm:py-20 md:py-28 overflow-hidden bg-white">
       <div className="absolute inset-0 gradient-radial-gold opacity-15" />
 
-      <div ref={ref} className="container mx-auto px-6 relative z-10">
+      <div ref={ref} className="container mx-auto px-4 sm:px-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -55,7 +55,7 @@ const ReviewsSection = () => {
               animate="center"
               exit="exit"
               transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-              className="relative rounded-xl p-10 md:p-14 text-center border border-border"
+              className="relative rounded-xl p-6 sm:p-10 md:p-14 text-center border border-border"
               style={{ background: "hsl(40 30% 97%)" }}
             >
               <div className="absolute top-6 left-8 opacity-[0.05]">
@@ -68,7 +68,7 @@ const ReviewsSection = () => {
                 ))}
               </div>
 
-              <p className="text-lg md:text-xl text-foreground/80 font-heading italic leading-relaxed mb-10 max-w-xl mx-auto">
+              <p className="text-base sm:text-lg md:text-xl text-foreground/80 font-heading italic leading-relaxed mb-8 sm:mb-10 max-w-xl mx-auto">
                 "{reviews[current].text}"
               </p>
 

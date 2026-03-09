@@ -48,8 +48,8 @@ const FooterSection = () => {
     <footer id="contact" className="relative overflow-hidden" style={{ background: "hsl(90 35% 18%)" }}>
       <div className="w-full h-px" style={{ background: "linear-gradient(90deg, transparent, hsl(45 55% 48% / 0.4), transparent)" }} />
 
-      <div ref={ref} className="container mx-auto px-6 relative z-10">
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 py-16 border-b border-white/10">
+      <div ref={ref} className="container mx-auto px-4 sm:px-6 relative z-10">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-10 py-10 sm:py-16 border-b border-white/10">
           {/* Logo */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={isInView ? { opacity: 1, y: 0 } : {}}>
             <img src={logoImg} alt="Eco-Xent" className="object-contain mb-4" style={{ height: "44px" }} />
@@ -144,16 +144,15 @@ const FooterSection = () => {
           </motion.div>
         </div>
 
-        <div className="py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="text-xs text-white/50 font-body font-light">© 2026 Eco-Xent. All rights reserved.</p>
-          <p className="text-xs text-white/50 font-body font-light">
+        <div className="py-4 sm:py-5 flex flex-col items-center gap-3 sm:gap-2">
+          <p className="text-[10px] sm:text-xs text-white/50 font-body font-light text-center">© 2026 Eco-Xent. All rights reserved.</p>
+          <p className="text-[10px] sm:text-xs text-white/50 font-body font-light text-center">
             Website by{" "}
             <a href="mailto:neonesttechnologies@gmail.com" className="hover:text-gold transition-colors underline">Neo Nest Technologies</a>
-            {" "}— <a href="mailto:neonesttechnologies@gmail.com" className="hover:text-gold transition-colors">neonesttechnologies@gmail.com</a>
           </p>
-          <div className="flex gap-5">
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-5">
             {["Privacy Policy", "Terms of Service", "Refund Policy"].map((item) => (
-              <a key={item} href="#" className="text-xs text-white/50 hover:text-gold transition-colors font-body font-light">{item}</a>
+              <a key={item} href="#" className="text-[10px] sm:text-xs text-white/50 hover:text-gold transition-colors font-body font-light">{item}</a>
             ))}
           </div>
         </div>
