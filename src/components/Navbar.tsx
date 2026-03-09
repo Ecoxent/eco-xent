@@ -82,7 +82,8 @@ const Navbar = ({ cartCount, onCartClick }: { cartCount: number; onCartClick: ()
         <div className="flex items-center justify-between h-[68px]">
           {/* Logo */}
           <motion.a
-            href="#hero"
+            href="/"
+            onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); history.replaceState(null, '', '/'); }}
             className="flex-shrink-0 relative group"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
