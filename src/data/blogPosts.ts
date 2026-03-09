@@ -955,7 +955,7 @@ The best natural ingredients for hair growth have centuries of traditional use b
     tags: ["herbal shampoo", "chemical shampoo", "hair care comparison", "natural products"],
     author: "Eco-Xent Team",
     publishDate: "2026-03-04",
-    featuredImage: "/placeholder.svg",
+    featuredImage: blogHerbalVsChemical,
     featuredImageAlt: "Comparison between herbal shampoo with natural ingredients and chemical shampoo with synthetic ingredients",
     excerpt: "Is herbal shampoo really better than chemical shampoo? A detailed comparison of ingredients, benefits, and long-term effects on your hair health.",
     content: `
