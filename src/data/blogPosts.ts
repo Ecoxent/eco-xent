@@ -1304,7 +1304,7 @@ Remember: consistency is key. Start today, be patient, and let nature work its m
     tags: ["men hair care", "hair care routine", "men grooming", "hair loss prevention"],
     author: "Eco-Xent Team",
     publishDate: "2026-03-06",
-    featuredImage: "/placeholder.svg",
+    featuredImage: blogMenHairCare,
     featuredImageAlt: "Man with healthy well-groomed hair following a natural hair care routine",
     excerpt: "Men need a proper hair care routine too. Learn the best practices for preventing hair loss, managing dandruff, and maintaining healthy, thick hair naturally.",
     content: `
