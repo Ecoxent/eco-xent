@@ -65,7 +65,7 @@ const BestSellerSection = () => {
             <p className="text-[11px] font-body font-medium tracking-[0.4em] uppercase text-gold mb-4">
               ★ Best Seller
             </p>
-            <h2 className="text-4xl md:text-5xl font-heading font-semibold text-foreground mb-6 leading-tight">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-heading font-semibold text-foreground mb-4 sm:mb-6 leading-tight">
               Botanic Shield
               <span className="block text-gradient-gold">Serum</span>
             </h2>
