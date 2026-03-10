@@ -8,7 +8,6 @@
 
 There are several ways of editing your application.
 
-**Use Lovable**
 
 Simply visit the https://eco-xent.ecoxent.com/
 
