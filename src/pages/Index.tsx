@@ -39,7 +39,7 @@ import productHairSerum from "@/assets/product-hair-serum-new.jpg";
 
 const productMap: Record<number, { name: string; price: number; priceDisplay: string; image: string }> = {
   1: { name: "Botanic Shield Serum", price: 1550, priceDisplay: "Rs.1,550", image: productSerum },
-  2: { name: "Hair Healer Oil", price: 750, priceDisplay: "Rs.750", image: productHairOil },
+  2: { name: "Hair Healer Oil", price: 850, priceDisplay: "Rs.850", image: productHairOil },
   3: { name: "Herbal Shampoo", price: 750, priceDisplay: "Rs.750", image: productShampoo },
   4: { name: "Herbal Soap", price: 1200, priceDisplay: "Rs.1,200", image: productSoap },
   5: { name: "Velvet Ritual Conditioner", price: 850, priceDisplay: "Rs.850", image: productConditioner },
