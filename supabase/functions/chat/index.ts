@@ -103,8 +103,9 @@ serve(async (req) => {
 Key product info:
 - Botanic Shield Serum: Advanced herbal defense with Hyaluronic Acid, Vitamin C, Rosehip Oil. Rs.1,550
 - All-in-One Serum: Niacinamide, Vitamin C, Kojic Acid, Alpha Arbutin. Rs.1,500
-- Hair Living Serum: Argan Oil, Marula Oil, Camellia Oil, Baobab Oil & Murumuru Butter. Rs.1,200
-- Hair Healer Oil: 13+ botanical oils for hair fall. Rs.750
+- Hair Living Serum: Argan Oil, Marula Oil, Camellia Oil, Baobab Oil & Mur
+umuru Butter. Rs.1,200
+- Hair Healer Oil: 13+ botanical oils for hair fall. Rs.850
 - Herbal Shampoo: Sulfate-free with Neem & Amla. Rs.750
 - Herbal Soap: Handcrafted with organic herbs. Rs.1,200
 - Eco-Xent Cleansing Soap: Neem, Amla, Tea Tree, Frankincense & Shea Butter. Rs.700
