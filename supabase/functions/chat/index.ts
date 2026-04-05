@@ -105,7 +105,7 @@ Key product info:
 - All-in-One Serum: Niacinamide, Vitamin C, Kojic Acid, Alpha Arbutin. Rs.1,500
 - Hair Living Serum: Argan Oil, Marula Oil, Camellia Oil, Baobab Oil & Mur
 umuru Butter. Rs.1,200
-- Hair Healer Oil: 13+ botanical oils for hair fall. Rs.850
+- Hair Healer Oil: 13+ botanical oils for hair fall. Rs.950
 - Herbal Shampoo: Sulfate-free with Neem & Amla. Rs.750
 - Herbal Soap: Handcrafted with organic herbs. Rs.1,200
 - Eco-Xent Cleansing Soap: Neem, Amla, Tea Tree, Frankincense & Shea Butter. Rs.700
@@ -113,7 +113,7 @@ umuru Butter. Rs.1,200
 
 All products are 100% organic, cruelty-free, and handcrafted in Pakistan.
 WhatsApp: +92 329 5991062
-Email: ecoxent@gmail.com
+Email: ecoxentofficial@gmail.com
 
 IMPORTANT: Always reply in English. Be warm, helpful, and concise. Guide customers to products based on their skin/hair concerns.`,
             },
@@ -127,7 +127,7 @@ IMPORTANT: Always reply in English. Be warm, helpful, and concise. Guide custome
     if (!response.ok) {
       if (response.status === 429) {
         return new Response(
-          JSON.stringify({ error: "بہت زیادہ requests. Please try again later." }),
+          JSON.stringify({ error: "Too many requests. Please try again later." }),
           { status: 429, headers: { ...corsHeaders, "Content-Type": "application/json" } }
         );
       }
